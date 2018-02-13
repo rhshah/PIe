@@ -82,9 +82,7 @@ USAGE
 def main(argv=None):
     args = process_command_line(argv)
     bwa = pie.util.programs['bwa'][args.bwa_version]
-    print(bwa)
     fasta = pie.util.genomes[args.genome]['bwa_fasta']
-    print(fasta)
     fastq1 = args.fastq1
     fastq2 = args.fastq2
     output = args.output
