@@ -100,6 +100,7 @@ def main(argv=None):
         else:
             cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1
     
+    LOG.info("pie_bwa_mem: command being run %s",cmd)
     args = shlex.split(cmd)
     proc = Popen(args)
     proc.wait()
@@ -135,13 +136,6 @@ def setlogging(logfile=None):
         fh.setLevel(filelevel)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
-    
-    #test logging
-    logger.debug("debug message")
-    logger.info("info message")
-    logger.warn("warn message")
-    logger.error("error message")
-    logger.critical("critical message")
     
     return logger
 
