@@ -52,17 +52,17 @@ USAGE
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
     # define options here:
-    parser.add_argument("-g", "--genome", choices=pie.util.genomes.keys(), dest="genome",  required=True, help="select which genome should be used for alignment")
-    parser.add_argument("-f1", "--fastq1", dest="fastq1", required=True, help="path to read file, if pair-end path to read1 file")
+    parser.add_argument("-g", "--genome", choices=pie.util.genomes.keys(), dest="genome",  required=True, help="select which genome should be used for alignment [required]")
+    parser.add_argument("-f1", "--fastq1", dest="fastq1", required=True, help="path to read file, if pair-end path to read1 file [required]")
     parser.add_argument("-f2", "--fastq2", dest="fastq2", help="path to read file, if pair-end path to read2 file")
-    parser.add_argument("-R", "--read_group", dest="read_group", required=True, help="information regarding read group for sam file")
-    parser.add_argument("-o" ,"--output", dest="output", required=True, help="path to output sam file")
+    parser.add_argument("-R", "--read_group", dest="read_group", required=True, help="information regarding read group for sam file [required]")
+    parser.add_argument("-o" ,"--output", dest="output", required=True, help="path to output sam file [required]")
     parser.add_argument("-v", "--verbose", action="store_true", dest="verbose", help="make some noise")
     parser.add_argument("-V", "--version", action="version", version=program_version_message)
-    parser.add_argument("-t", "--threads", dest="threads", required=True, help="Number of Threads to be used to run ABRA")
-    parser.add_argument("-T", "--alignment_score", dest="alignment_score", help="Don’t output alignment with score lower than INT. This option only affects output.")
+    parser.add_argument("-t", "--threads", dest="threads", required=True, help="number of threads to be used to run bwa [required]")
+    parser.add_argument("-T", "--alignment_score", dest="alignment_score", default=0, help="Don’t output alignment with score lower than INT. This option only affects output." [default=0])
     parser.add_argument("-M", "--picard_compatibility", dest="picard_compatibility", action="store_true" ,help="Mark shorter split hits as secondary (for Picard compatibility).")
-    parser.add_argument("-L", "--log", dest="logfile", required=True, help="write debug log to FILENAME")
+    parser.add_argument("-L", "--log", dest="logfile", required=True, help="write debug log to FILENAME [required]")
     args = parser.parse_args()
 
     # set up logging
