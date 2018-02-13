@@ -101,6 +101,7 @@ def main(argv=None):
             cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1
     
     LOG.info("pie_bwa_mem: command being run %s",cmd)
+    ''' 
     args = shlex.split(cmd)
     proc = Popen(args)
     proc.wait()
@@ -113,7 +114,8 @@ def main(argv=None):
             LOG.info("pie_bwa_mem duration: %s", totaltime)
     else:
         if(verbose):
-            LOG.critical("pie_bwa_mem: either bwa mem is still running or its errored out with returncode:%d",retcode)
+            LOG.critical("pie_bwa_mem: either bwa mem is still running or its errored out with returncode:%d",retcode) 
+    '''
     return 0       
 
 def setlogging(logfile=None):
