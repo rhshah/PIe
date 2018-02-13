@@ -2,11 +2,13 @@ import json
 import logging
 import os
 import sys
+import subprocess
 
 RESOURCE_FILE = os.getenv('PIE_RESOURCE_CONFIG', "pie_resources.json")
 JSON_CONFIG = json.load(open(RESOURCE_FILE))
 programs = JSON_CONFIG['programs']
 genomes = JSON_CONFIG['genomes']
+chr1_fingerprints = JSON_CONFIG['chr1_fingerprints']
 keys = JSON_CONFIG['keys']
 targets = JSON_CONFIG['targets']
 config = JSON_CONFIG['config']
@@ -17,3 +19,4 @@ OUT_HANDLAR.setLevel(logging.INFO)
 LOGGER = logging.getLogger('pie')
 LOGGER.addHandler(OUT_HANDLAR)
 LOGGER.setLevel(logging.INFO)
+

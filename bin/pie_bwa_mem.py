@@ -185,8 +185,12 @@ def main(argv=None):
     LOG.info("command being run \n %s", cmd)
 
     args = shlex.split(cmd)
-    proc = Popen(args,shell=True)
-    proc.wait()
+    
+                        
+    proc = Popen(args,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    stdout,stderr = proc.communicate()
+    LOG.critical(stderr)
+    LOG.info(stdout)
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
