@@ -6,6 +6,7 @@ pie_bwa_mem.py
 Created by Ronak Shah on February 13, 2018.
 Copyright (c) 2018 Northwell Health. All rights reserved.
 """
+from __future__ import print_function
 import os
 import sys
 import logging
@@ -16,6 +17,12 @@ import shlex
 import time
 from datetime import date, timedelta
 import pie
+
+try:
+    import coloredlogs
+except ImportError:
+    print("pie_bwa_mem: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
+    pass
 
 LOG = None
 
@@ -52,10 +59,11 @@ USAGE
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
     # define options here:
+    parser.add_argument("-b", "--bwa_version", choices=pie.util.programs['bwa'].keys(),dest="bwa_version", help="select which version of bwa you will like to run")
     parser.add_argument("-g", "--genome", choices=pie.util.genomes.keys(), dest="genome",  required=True, help="select which genome should be used for alignment [required]")
     parser.add_argument("-f1", "--fastq1", dest="fastq1", required=True, help="path to read FASTQ file, if pair-end path to read1 file [required]")
     parser.add_argument("-f2", "--fastq2", dest="fastq2", help="path to read FASTQ file, if pair-end path to read2 file")
-    parser.add_argument("-R", "--read_group", dest="read_group", required=True, help="information regarding read group for SAM file [required]")
+    parser.add_argument("-R", "--read_group", dest="read_group", type=str, required=True, help="information regarding read group for SAM file [required]")
     parser.add_argument("-o" ,"--output", dest="output", required=True, help="output SAM FILENAME  [required]")
     parser.add_argument("-v", "--verbose", action="store_true", dest="verbose", help="make some noise")
     parser.add_argument("-V", "--version", action="version", version=program_version_message)
@@ -73,8 +81,10 @@ USAGE
 
 def main(argv=None):
     args = process_command_line(argv)
-    bwa = pie.util.programs['bwa']
+    bwa = pie.util.programs['bwa'][args.bwa_version]
+    print(bwa)
     fasta = pie.util.genomes[args.genome]['bwa_fasta']
+    print(fasta)
     fastq1 = args.fastq1
     fastq2 = args.fastq2
     output = args.output
@@ -87,8 +97,8 @@ def main(argv=None):
     today = day.isoformat()
     start_time = time.time()
     if(verbose):
-        LOG.info("pie_bwa_mem: all the input parameters look good for running bwa mem")
-        LOG.info("pie_bwa_mem: process id:%s,date:%s", myPid, today)
+        LOG.info("all the input parameters look good for running bwa mem")
+        LOG.info("process id:%s,date:%s", myPid, today)
     if(fastq2):
         if(args.picard_compatibility):
             cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " -M " + fasta + " " + fastq1  + " " + fastq2
@@ -100,8 +110,8 @@ def main(argv=None):
         else:
             cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1
     
-    LOG.info("pie_bwa_mem: command being run %s",cmd)
-    ''' 
+    LOG.info("command being run \n %s",cmd)
+    
     args = shlex.split(cmd)
     proc = Popen(args)
     proc.wait()
@@ -110,35 +120,31 @@ def main(argv=None):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
         if(verbose):
-            LOG.info("pie_bwa_mem: finished running bwa,please find output in %s",output)
-            LOG.info("pie_bwa_mem duration: %s", totaltime)
+            LOG.info("finished running bwa,please find output in %s",output)
+            LOG.info("duration: %s", totaltime)
     else:
         if(verbose):
-            LOG.critical("pie_bwa_mem: either bwa mem is still running or its errored out with returncode:%d",retcode) 
-    '''
+            LOG.critical("either bwa mem is still running or its errored out with returncode:%d",retcode) 
+    
     return 0       
 
 def setlogging(logfile=None):
-    consolelevel = logging.DEBUG
-    logger = logging.getLogger(__name__)
-    logger.setLevel(consolelevel)
-    # create formatter and add it to the handlers
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-    # create console handler with a higher log level
-    ch = logging.StreamHandler()
-    ch.setLevel(consolelevel)
-    ch.setFormatter(formatter)
-    # add the handlers to logger
-    logger.addHandler(ch)
-    
-    # create file handler which logs error messages
+    logger = logging.getLogger("pie_bwa_mem")
+    formatter = logging.Formatter(fmt='%(asctime)s, %(name)s[%(process)d] %(levelname)s %(message)s',datefmt='%m/%d/%Y %I:%M:%S %p')
+    try:
+        coloredlogs.install(fmt='%(asctime)s, %(hostname)s %(name)s[%(process)d] %(levelname)s %(message)s',datefmt='%m/%d/%Y %I:%M:%S %p',level='DEBUG', logger=logger)
+    except NameError:
+        logger.setLevel(logging.DEBUG)
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.DEBUG)
+        ch.setFormatter(formatter)
+        logger.addHandler(ch) 
+        pass
     if logfile:
-        filelevel = logging.ERROR
-        fh = logging.FileHandler(logfile)
-        fh.setLevel(filelevel)
+        fh = logging.FileHandler(logfile,mode='w')
+        fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
-    
     return logger
 
 if __name__ == '__main__':

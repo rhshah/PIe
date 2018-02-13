@@ -85,7 +85,8 @@ setup(
     ],
     install_requires=[
         'argparse',
-        'filemagic'
+        'filemagic',
+        'coloredlogs'
     ],
     scripts=[
         'bin/pie_bwa_mem.py'
