@@ -88,7 +88,7 @@ setup(
         'filemagic'
     ],
     scripts=[
-        'bin/pie_bwa_mem'
+        'bin/pie_bwa_mem.py'
     ],
     zip_safe=False,
     classifiers=(
