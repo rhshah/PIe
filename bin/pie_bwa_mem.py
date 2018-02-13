@@ -14,7 +14,7 @@ import sys
 import logging
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
-from subprocess import Popen
+from subprocess import Popen, PIPE
 import shlex
 import time
 from datetime import date, timedelta
@@ -187,7 +187,7 @@ def main(argv=None):
     args = shlex.split(cmd)
     
                         
-    proc = Popen(args,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    proc = Popen(args,shell=True,stdout=PIPE,stderr=PIPE)
     stdout,stderr = proc.communicate()
     LOG.critical(stderr)
     LOG.info(stdout)
