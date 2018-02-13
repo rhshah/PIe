@@ -15,7 +15,7 @@ import logging
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 from subprocess import Popen, PIPE
-import shlex
+#import shlex
 import time
 from datetime import date, timedelta
 import pie
@@ -184,10 +184,10 @@ def main(argv=None):
 
     LOG.info("command being run \n %s", cmd)
 
-    args = shlex.split(cmd)
+    #args = shlex.split(cmd)
     
                         
-    proc = Popen(args,shell=True,stdout=PIPE,stderr=PIPE)
+    proc = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
     stdout,stderr = proc.communicate()
     LOG.critical(stderr)
     LOG.info(stdout)
