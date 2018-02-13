@@ -6,6 +6,8 @@ pie_bwa_mem.py
 Created by Ronak Shah on February 13, 2018.
 Copyright (c) 2018 Northwell Health. All rights reserved.
 """
+
+#import required modules for the script
 from __future__ import print_function
 import os
 import sys
@@ -24,22 +26,27 @@ except ImportError:
     print("pie_bwa_mem: coloredlogs is not installed, please install it if you wish to see color in logs on standard out.")
     pass
 
+# initialize global logger
 LOG = None
 
+# meta information for the file
 __all__ = []
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
 __date__ = '2018-02-12'
 __updated__ = '2018-02-12'
 
+# process the given arguments from the command line
 def process_command_line(argv):
-
+    # get the global log variable
     global LOG
+    # processing to see if args are given
     if argv is None:
         argv = sys.argv
     else:
         sys.argv.extend(argv)
 
+    # more meta infromation generation
     program_name = os.path.basename(sys.argv[0])
     program_version = "v%s" % __version__
     program_build_date = str(__updated__)
@@ -75,10 +82,11 @@ USAGE
 
     # set up logging
     if args.verbose:
-        LOG = setlogging(args.logfile)
+        LOG = setlogging(args.logfile,program_name)
         
     return args
 
+# assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
     args = process_command_line(argv)
     bwa = pie.util.programs['bwa'][args.bwa_version]
@@ -109,7 +117,7 @@ def main(argv=None):
             cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1
     
     LOG.info("command being run \n %s",cmd)
-    
+
     args = shlex.split(cmd)
     proc = Popen(args)
     proc.wait()
@@ -122,12 +130,13 @@ def main(argv=None):
             LOG.info("duration: %s", totaltime)
     else:
         if(verbose):
-            LOG.critical("either bwa mem is still running or its errored out with returncode:%d",retcode) 
-    
+            LOG.critical("either bwa mem is still running or its errored out with returncode:%d",retcode)
+        return 1
+
     return 0       
 
-def setlogging(logfile=None):
-    logger = logging.getLogger("pie_bwa_mem")
+def setlogging(logfile=None,logger_name=None):
+    logger = logging.getLogger(logger_name)
     formatter = logging.Formatter(fmt='%(asctime)s, %(name)s[%(process)d] %(levelname)s %(message)s',datefmt='%m/%d/%Y %I:%M:%S %p')
     try:
         coloredlogs.install(fmt='%(asctime)s, %(hostname)s %(name)s[%(process)d] %(levelname)s %(message)s',datefmt='%m/%d/%Y %I:%M:%S %p',level='DEBUG', logger=logger)
@@ -149,5 +158,6 @@ if __name__ == '__main__':
     start_time = time.time()  
     status = main()
     end_time = time.time()
-    LOG.info("Elapsed time was %g seconds" % (end_time - start_time))
+    totaltime = str(timedelta(seconds=end_time - start_time))
+    LOG.info("Elapsed time was %s", totaltime)
     sys.exit(status)
