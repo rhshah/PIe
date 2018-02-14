@@ -185,9 +185,9 @@ def main(argv=None):
     proc = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
     stdout,stderr = proc.communicate()
     if(stdout):
-        LOG.critical(stdout)
+        LOG.critical(stdout) # this is excpetion for bwa as stderr comes to stdout
     if(stderr):
-        LOG.info(stderr)
+        LOG.info(stderr) # this is  excpetion for bwa as stderr comes to stdout
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
