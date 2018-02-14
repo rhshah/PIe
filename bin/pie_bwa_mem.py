@@ -146,8 +146,7 @@ USAGE
     args = parser.parse_args()
 
     # set up logging
-    if args.verbose:
-        LOG = setlogging(args.logfile, program_name)
+    LOG = setlogging(args.logfile, program_name)
 
     return args
 
@@ -189,8 +188,10 @@ def main(argv=None):
                         
     proc = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
     stdout,stderr = proc.communicate()
-    LOG.critical(stderr)
-    LOG.info(stdout)
+    if(stdout):
+        LOG.info(stdout)
+    if(stderr):
+        LOG.critical(stderr)
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
