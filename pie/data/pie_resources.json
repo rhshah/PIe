@@ -19,7 +19,7 @@
         },
         "cutadapt":
         { 
-            "default":""
+            "default":"/Users/rshah22/anaconda2/bin/cutadapt"
         },
         "samtools":
         {
