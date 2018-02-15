@@ -74,7 +74,7 @@ USAGE
         "--cutadapt_version",
         choices=pie.util.programs['cutadapt'].keys(),
         required=True,
-        dest="cutadpat_version",
+        dest="cutadapt_version",
         help="select which version of cutadapt you will like to run")
     parser.add_argument(
         "-ff",
@@ -159,31 +159,37 @@ USAGE
         "-a",
         "--read1_3prime",
         dest="read1_3prime",
+        type=str,
         help="3' adapter to be removed from first read in a pair")
     parser.add_argument(
         "-A",
         "--read2_3prime",
         dest="read2_3prime",
+        type=str,
         help="3' adapter to be removed from second read in a pair")
     parser.add_argument(
         "-g",
         "--read1_5prime",
         dest="read1_5prime",
+        type=str,
         help="5' adapter to be removed from first read in a pair")
     parser.add_argument(
         "-G",
         "--read2_5prime",
         dest="read2_5prime",
+        type=str,
         help="5' adapter to be removed from second read in a pair")
     parser.add_argument(
         "-b",
         "--read1_35prime",
         dest="read1_35prime",
+        type=str,
         help="3' or 5' adapter to be removed from first read in a pair")
     parser.add_argument(
         "-B",
         "--read2_35prime",
         dest="read2_35prime",
+        type=str,
         help="3' or 5' adapter to be removed from second read in a pair")
     parser.add_argument(
         "-pf",
@@ -237,19 +243,19 @@ def main(argv=None):
         file_format = " -f " + args.file_format
         cmd = cmd + file_format
     if(args.error_rate):
-        errorr_rate = " -e " + args.error_rate
+        errorr_rate = " -e " + str(args.error_rate)
         cmd = cmd + errorr_rate
     if(args.minimum_length):
-        minimum_length = " -m " + args.minimum_length
+        minimum_length = " -m " + str(args.minimum_length)
         cmd = cmd + minimum_length
     if(args.overlap_minimum_length):
-        overlap_minimum_length = " -O " + args.overlap_minimum_length
+        overlap_minimum_length = " -O " + str(args.overlap_minimum_length)
         cmd = cmd + overlap_minimum_length
     if(args.quality_base):
-        quality_base = " --quality_base " + args.quality_base
+        quality_base = " --quality_base " + str(args.quality_base)
         cmd = cmd + quality_base
     if(args.cores):
-        cores = " -j " + args.cores
+        cores = " -j " + str(args.cores)
         cmd = cmd + cores
     if(args.pair_filter):
         pair_filter = " --pair-filter " + args.pair_filter
@@ -261,7 +267,7 @@ def main(argv=None):
     fastq2 = args.fastq2
     
     # final command
-    cmd = cmd + ofastq1 + ofastq2 + fastq1 + " " + fastq2
+    cmd = cmd + ofastq1 + ofastq2 + " " + fastq1 + " " + fastq2
 
     verbose = args.verbose
     myPid = os.getpid()
@@ -273,7 +279,9 @@ def main(argv=None):
         LOG.info("process id:%s,date:%s", myPid, today)
 
     LOG.info("command being run \n %s", cmd)
+    
     # setup the command to run
+
     proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
     stdout, stderr = proc.communicate()
     if (stdout):
@@ -295,7 +303,7 @@ def main(argv=None):
                 "either cutadapt is still running or its errored out with returncode:%d",
                 retcode)
         return 1
-
+    
     return 0
 
 
