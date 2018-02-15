@@ -1,2 +1,2 @@
-# pie_tools
-Python wrapper for tools
+# Precision Informatics engine (PIe)
+Python wrapper for tools 
