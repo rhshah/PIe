@@ -119,7 +119,7 @@ USAGE
         "-t",
         "--threads",
         dest="threads",
-        defaut=1,
+        default=1,
         help="number of threads to be used to run bwa [default=1]")
     parser.add_argument(
         "-T",
