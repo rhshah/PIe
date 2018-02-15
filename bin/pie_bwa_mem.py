@@ -225,7 +225,7 @@ def setlogging(logfile=None, logger_name=None):
         logger.addHandler(ch)
         pass
     if logfile:
-        fh = logging.FileHandler(logfile, mode='w')
+        fh = logging.FileHandler(logfile, mode='a')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)

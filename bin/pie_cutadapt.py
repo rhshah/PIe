@@ -70,9 +70,9 @@ USAGE
         formatter_class=RawDescriptionHelpFormatter)
     # define options here:
     parser.add_argument(
-        "-b",
+        "-cv",
         "--cutadapt_version",
-        choices=pie.util.programs['bwa'].keys(),
+        choices=pie.util.programs['cutadapt'].keys(),
         required=True,
         dest="cutadpat_version",
         help="select which version of cutadapt you will like to run")
@@ -187,8 +187,8 @@ USAGE
         help="3' or 5' adapter to be removed from second read in a pair")
     parser.add_argument(
         "-pf",
-        " --pair_filter",
-        dest="picard_compatibility",
+        "--pair_filter",
+        dest="pair_filter",
         choices=['any', 'both'],
         default="any",
         help=
@@ -319,7 +319,7 @@ def setlogging(logfile=None, logger_name=None):
         logger.addHandler(ch)
         pass
     if logfile:
-        fh = logging.FileHandler(logfile, mode='w')
+        fh = logging.FileHandler(logfile, mode='a')
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)
