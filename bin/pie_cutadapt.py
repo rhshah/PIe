@@ -35,7 +35,7 @@ __all__ = []
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
 __date__ = '2018-02-14'
-__updated__ = '2018-02-14'
+__updated__ = '2018-02-15'
 
 
 # process the given arguments from the command line
@@ -80,8 +80,7 @@ USAGE
         "-ff",
         "--file_format",
         dest="file_format",
-        help=
-        "Input file format; can be either 'fasta', 'fastq' or \
+        help="Input file format; can be either 'fasta', 'fastq' or \
         'sra-fastq'. Ignored when reading csfasta/qual files. \
         [default=auto-detect from file name extension.]")
     parser.add_argument(
@@ -151,10 +150,8 @@ USAGE
         "--error_rate",
         dest="error_rate",
         default=0.1,
-        help=
-        "Maximum allowed error rate (no. of errors divided by \
-        Tthe length of the matching region). [default=0.1]"
-    )
+        help="Maximum allowed error rate (no. of errors divided by \
+        Tthe length of the matching region). [default=0.1]")
     parser.add_argument(
         "-a",
         "--read1_3prime",
@@ -199,8 +196,7 @@ USAGE
         default="any",
         help=
         "Which of the reads in a paired-end read have to match the filtering criterion \
-        in order for the pair to be filtered. [default=any]"
-    )
+        in order for the pair to be filtered. [default=any]")
     parser.add_argument(
         "-L",
         "--log",
@@ -221,51 +217,51 @@ def main(argv=None):
     cmd = ""
     cutadapt = pie.util.programs['cutadapt'][args.cutadapt_version]
     cmd = cmd + cutadapt
-    if(args.read1_3prime):
+    if (args.read1_3prime):
         read1_3prime = " -a " + args.read1_3prime
-        cmd = cmd + read1_3prime 
-    if(args.read2_3prime):
+        cmd = cmd + read1_3prime
+    if (args.read2_3prime):
         read2_3prime = " -A " + args.read2_3prime
         cmd = cmd + read2_3prime
-    if(args.read1_5prime):
+    if (args.read1_5prime):
         read1_5prime = " -g " + args.read1_5prime
         cmd = cmd + read1_5prime
-    if(args.read2_5prime):
+    if (args.read2_5prime):
         read2_5prime = " -G " + args.read2_5prime
         cmd = cmd + read2_5prime
-    if(args.read1_35prime):
+    if (args.read1_35prime):
         read1_35prime = " -b " + args.read1_5prime
         cmd = cmd + read1_35prime
-    if(args.read2_35prime):
+    if (args.read2_35prime):
         read2_35prime = " -B " + args.read2_5prime
         cmd = cmd + read2_35prime
-    if(args.file_format):
+    if (args.file_format):
         file_format = " -f " + args.file_format
         cmd = cmd + file_format
-    if(args.error_rate):
+    if (args.error_rate):
         errorr_rate = " -e " + str(args.error_rate)
         cmd = cmd + errorr_rate
-    if(args.minimum_length):
+    if (args.minimum_length):
         minimum_length = " -m " + str(args.minimum_length)
         cmd = cmd + minimum_length
-    if(args.overlap_minimum_length):
+    if (args.overlap_minimum_length):
         overlap_minimum_length = " -O " + str(args.overlap_minimum_length)
         cmd = cmd + overlap_minimum_length
-    if(args.quality_base):
+    if (args.quality_base):
         quality_base = " --quality_base " + str(args.quality_base)
         cmd = cmd + quality_base
-    if(args.cores):
+    if (args.cores):
         cores = " -j " + str(args.cores)
         cmd = cmd + cores
-    if(args.pair_filter):
+    if (args.pair_filter):
         pair_filter = " --pair-filter " + args.pair_filter
         cmd = cmd + pair_filter
-    
+
     ofastq1 = " -o " + args.out_fastq1
     ofastq2 = " -p " + args.out_fastq2
     fastq1 = args.fastq1
     fastq2 = args.fastq2
-    
+
     # final command
     cmd = cmd + ofastq1 + ofastq2 + " " + fastq1 + " " + fastq2
 
@@ -275,27 +271,26 @@ def main(argv=None):
     today = day.isoformat()
     start_time = time.time()
     if (verbose):
-        LOG.info("all the input parameters look good for running bwa mem")
+        LOG.info("all the input parameters look good for running cutadapt")
         LOG.info("process id:%s,date:%s", myPid, today)
 
     LOG.info("command being run \n %s", cmd)
-    
+
     # setup the command to run
 
     proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
     stdout, stderr = proc.communicate()
-    if (stdout):
-        LOG.critical(
-            stdout)  # this is excpetion for bwa as stderr comes to stdout
     if (stderr):
-        LOG.info(
-            stderr)  # this is  excpetion for bwa as stderr comes to stdout
+        LOG.critical(stderr)
+    if (stdout):
+        LOG.info(stdout)
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
-            LOG.info("finished running cutadapt,please find output in %s,%s", ofastq1,ofastq2)
+            LOG.info("finished running cutadapt,please find output in %s,%s",
+                     ofastq1, ofastq2)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):
@@ -303,7 +298,7 @@ def main(argv=None):
                 "either cutadapt is still running or its errored out with returncode:%d",
                 retcode)
         return 1
-    
+
     return 0
 
 

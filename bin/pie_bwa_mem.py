@@ -35,7 +35,7 @@ __all__ = []
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
 __date__ = '2018-02-12'
-__updated__ = '2018-02-12'
+__updated__ = '2018-02-15'
 
 
 # process the given arguments from the command line
@@ -100,7 +100,6 @@ USAGE
         "--read_group",
         dest="read_group",
         type=str,
-        required=True,
         help="information regarding read group for SAM file within quotes(ex: \"\'@RG\\tID:1\\tSM:1247014_S5\\tLB:1247014_S5_L001\\tPL:ILLUMINA\'\")[required]")
     parser.add_argument(
         "-o",
@@ -120,8 +119,8 @@ USAGE
         "-t",
         "--threads",
         dest="threads",
-        required=True,
-        help="number of threads to be used to run bwa [required]")
+        defaut=1,
+        help="number of threads to be used to run bwa [default=1]")
     parser.add_argument(
         "-T",
         "--alignment_score",
@@ -153,14 +152,32 @@ USAGE
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
     args = process_command_line(argv)
+    cmd = ""
     bwa = pie.util.programs['bwa'][args.bwa_version]
+    cmd = cmd + bwa + " mem"
+    if(args.threads):
+        threads = " -t " + str(args.threads)
+        cmd = cmd + threads
+    if(args.alignment_score):
+        alignment_score = " -T " + str(args.alignment_score)
+        cmd = cmd + alignment_score
+    if(args.read_group):
+        read_group = " -R " + args.read_group
+        cmd = cmd + read_group
+    if(args.picard_compatibility):
+        picard_compatibility = " -M "
+        cmd = cmd + picard_compatibility
+    if(args.output):
+        output = " -o " + args.output
+        cmd = cmd + output
     fasta = pie.util.genomes[args.genome]['bwa_fasta']
     fastq1 = args.fastq1
-    fastq2 = args.fastq2
-    output = args.output
-    threads = args.threads
-    alignment_score = args.alignment_score
-    read_group = args.read_group
+    cmd = cmd + " " + fasta + " " + fastq1
+    
+    if(args.fastq2):
+        fastq2 = args.fastq2
+        cmd = cmd + " " + fastq2
+
     verbose = args.verbose
     myPid = os.getpid()
     day = date.today()
@@ -169,16 +186,6 @@ def main(argv=None):
     if (verbose):
         LOG.info("all the input parameters look good for running bwa mem")
         LOG.info("process id:%s,date:%s", myPid, today)
-    if (fastq2):
-        if (args.picard_compatibility):
-            cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " -M " + fasta + " " + fastq1 + " " + fastq2
-        else:
-            cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1 + " " + fastq2
-    else:
-        if (args.picard_compatibility):
-            cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " -M " + fasta + " " + fastq1
-        else:
-            cmd = bwa + " mem " + "-t " + threads + " -T " + alignment_score + " -R " + read_group + " -o " + output + " " + fasta + " " + fastq1
 
     LOG.info("command being run \n %s", cmd)
     # setup the command to run
