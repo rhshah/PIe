@@ -213,7 +213,7 @@ USAGE
 def main(argv=None):
     args = process_command_line(argv)
     cmd = ""
-    cutadapt = pie.util.programs['cutadapt'][args.bwa_version]
+    cutadapt = pie.util.programs['cutadapt'][args.cutadapt_version]
     cmd = cmd + cutadapt
     if(args.read1_3prime):
         read1_3prime = " -a " + args.read1_3prime
