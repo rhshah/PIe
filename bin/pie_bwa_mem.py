@@ -101,7 +101,7 @@ USAGE
         dest="read_group",
         type=str,
         help="information regarding read group for SAM file within quotes \
-        (ex: \"\'@RG\\tID:1\\tSM:1247014_S5\\tLB:1247014_S5_L001\\tPL:ILLUMINA\'\")")
+        (example: \"\'@RG\\tID:1\\tSM:1247014_S5\\tLB:1247014_S5_L001\\tPL:ILLUMINA\'\")")
     parser.add_argument(
         "-o",
         "--output",
