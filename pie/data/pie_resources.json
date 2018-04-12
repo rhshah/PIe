@@ -27,7 +27,7 @@
         },
         "picard":
         {
-            "default":""
+            "default":"/Users/rshah22/anaconda2/bin/picard"
         },
         "java":
         {
