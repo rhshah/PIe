@@ -18,7 +18,7 @@ from subprocess import Popen, PIPE
 import time
 from datetime import date, timedelta
 import pie
-
+from pie.util import picard as picardargs
 try:
     import coloredlogs
 except ImportError:
@@ -128,7 +128,7 @@ USAGE
         required=True,
         help="write debug log to FILENAME [required]")
     #Add additional standard arguments
-    parser = pie.util.picard(parser)
+    parser = picardargs(parser)
     args = parser.parse_args()
 
     # set up logging
