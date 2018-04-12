@@ -17,8 +17,8 @@ from argparse import RawDescriptionHelpFormatter
 from subprocess import Popen, PIPE
 import time
 from datetime import date, timedelta
+from pie.util import picard_std_args as picardargs
 import pie
-from pie.util import picard as picardargs
 try:
     import coloredlogs
 except ImportError:

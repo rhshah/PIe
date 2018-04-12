@@ -20,7 +20,7 @@ LOGGER.addHandler(OUT_HANDLAR)
 LOGGER.setLevel(logging.INFO)
 
 
-def picard(parser):
+def picard_std_args(parser):
     parser.add_arguments(
         "-tmp",
         "--tmp_dir",
