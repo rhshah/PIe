@@ -81,14 +81,15 @@ USAGE
         "--input",
         dest="input_bam",
         required=True,
-        help=
-        "path / name of BAM FILENAME [required]")
+        help="path / name of BAM FILENAME [required]")
     parser.add_argument(
         "-m",
         "--metrics",
         dest="output_metrics",
         required=True,
-        help="path to / name of the output TXT FILENAME, in which we store the duplication metrics [required]")
+        help=
+        "path to / name of the output TXT FILENAME, in which we store the duplication metrics [required]"
+    )
     parser.add_argument(
         "-o",
         "--output",
@@ -109,7 +110,9 @@ USAGE
         dest="assume_sort_order",
         default="coordinate",
         type=str,
-        help="f not null, assume that the input file has this order even if the header says otherwise. Default value: null. Possible values: {unsorted, queryname, coordinate, duplicate, unknown} [default=coordinate]")
+        help=
+        "f not null, assume that the input file has this order even if the header says otherwise. Default value: null. Possible values: {unsorted, queryname, coordinate, duplicate, unknown} [default=coordinate]"
+    )
     parser.add_argument(
         "-odpd",
         "--optical_duplicate_pixel_distance",
@@ -140,37 +143,38 @@ def main(argv=None):
     cmd = ""
     picard = pie.util.programs['picard'][args.bwa_version]
     cmd = cmd + picard + " MarkDuplicates"
-    if(args.input_bam):
+    if (args.input_bam):
         input_bam = " I=" + str(args.input_bam)
         cmd = cmd + input_bam
-    if(args.output_metrics):
+    if (args.output_metrics):
         output_metrics = " M=" + str(args.output_metrics)
         cmd = cmd + output_metrics
-    if(args.output_bam):
+    if (args.output_bam):
         output_bam = " O=" + args.output_bam
         cmd = cmd + output_bam
-    if(args.reference_sequence):
-        reference_sequence = " R=" + pie.util.genomes[args.reference_sequence]['bwa_fasta']
+    if (args.reference_sequence):
+        reference_sequence = " R=" + pie.util.genomes[args.
+                                                      reference_sequence]['bwa_fasta']
         cmd = cmd + reference_sequence
-    if(args.optical_duplicate_pixel_distance):
+    if (args.optical_duplicate_pixel_distance):
         optical_duplicate_pixel_distance = " OPTICAL_DUPLICATE_PIXEL_DISTANCE=" + args.optical_duplicate_pixel_distance
         cmd = cmd + optical_duplicate_pixel_distance
-    if(args.assume_sort_order):
+    if (args.assume_sort_order):
         assume_sort_order = " ASSUME_SORT_ORDER=" + args.assume_sort_order
         cmd = cmd + assume_sort_order
-    if(args.tmp_dir):
+    if (args.tmp_dir):
         tmp_dir = " TMP_DIR=" + args.tmp_dir
         cmd = cmd + tmp_dir
-    if(args.create_index):
+    if (args.create_index):
         create_index = " CREATE_INDEX=" + args.create_index
         cmd = cmd + create_index
-    if(args.validation_stringency):
+    if (args.validation_stringency):
         validation_stringency = " VALIDATION_STRINGENCY=" + args.validation_stringency
         cmd = cmd + validation_stringency
-    if(args.create_md5_file):
+    if (args.create_md5_file):
         create_md5_file = " CREATE_MD5_FILE=" + args.create_md5_file
         cmd = cmd + create_md5_file
-    if(args.compression_level):
+    if (args.compression_level):
         compression_level = " COMPRESSION_LEVEL=" + args.compression_level
         cmd = cmd + compression_level
 
@@ -180,23 +184,27 @@ def main(argv=None):
     today = day.isoformat()
     start_time = time.time()
     if (verbose):
-        LOG.info("all the input parameters look good for running picard markduplicates")
+        LOG.info(
+            "all the input parameters look good for running picard markduplicates"
+        )
         LOG.info("process id:%s,date:%s", myPid, today)
 
     LOG.info("command being run \n %s", cmd)
     # setup the command to run
-    proc = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
-    stdout,stderr = proc.communicate()
-    if(stdout):
-        LOG.info(stdout) 
-    if(stderr):
-        LOG.critical(stderr) 
+    proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = proc.communicate()
+    if (stdout):
+        LOG.info(stdout)
+    if (stderr):
+        LOG.critical(stderr)
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
-            LOG.info("finished running picard for markduplicates,please find output in %s", output_bam)
+            LOG.info(
+                "finished running picard for markduplicates,please find output in %s",
+                output_bam)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):
