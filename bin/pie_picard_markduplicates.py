@@ -17,8 +17,6 @@ from argparse import RawDescriptionHelpFormatter
 from subprocess import Popen, PIPE
 import time
 from datetime import date, timedelta
-from pie.util import picard_std_args as picardargs
-import pie
 try:
     import coloredlogs
 except ImportError:
@@ -40,6 +38,7 @@ __updated__ = '2018-02-15'
 
 # process the given arguments from the command line
 def process_command_line(argv):
+    import pie
     # get the global log variable
     global LOG
     # processing to see if args are given
@@ -128,7 +127,7 @@ USAGE
         required=True,
         help="write debug log to FILENAME [required]")
     #Add additional standard arguments
-    parser = picardargs(parser)
+    parser = pie.util.picard_std_args(parser)
     args = parser.parse_args()
 
     # set up logging
@@ -139,6 +138,7 @@ USAGE
 
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
+    import pie
     args = process_command_line(argv)
     cmd = ""
     picard = pie.util.programs['picard'][args.bwa_version]
