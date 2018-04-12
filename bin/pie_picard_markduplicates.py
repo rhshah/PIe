@@ -67,6 +67,7 @@ USAGE
     parser = ArgumentParser(
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
+    parser = picard_std_args(parser)
     # define options here:
     parser.add_argument(
         "-p",
@@ -126,8 +127,6 @@ USAGE
         dest="logfile",
         required=True,
         help="write debug log to FILENAME [required]")
-    #Add additional standard arguments
-    parser = picard_std_args(parser)
     args = parser.parse_args()
 
     # set up logging
