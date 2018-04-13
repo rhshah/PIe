@@ -51,7 +51,7 @@ def picard_std_args(parser):
         help=
         "Validation stringency for all SAM files read by this program. Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.[default=SILENT]"
     )
-    parser.add_arguments(
+    parser.add_argument(
         "-c",
         "--compression_level",
         dest="compression_level",
