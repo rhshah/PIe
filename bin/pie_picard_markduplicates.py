@@ -123,7 +123,7 @@ USAGE
         choices=pie.util.programs['picard'].keys(),
         required=True,
         dest="picard_version",
-        help="select which version of bwa you will like to run")
+        help="select which version of picard you will like to run")
     parser.add_argument(
         "-i",
         "--input",
