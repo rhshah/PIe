@@ -9,6 +9,7 @@ Copyright (c) 2018 Northwell Health. All rights reserved.
 
 #import required modules for the script
 from __future__ import print_function
+import time
 def imports():
     import os
     import sys
@@ -16,7 +17,6 @@ def imports():
     from argparse import ArgumentParser
     from argparse import RawDescriptionHelpFormatter
     from subprocess import Popen, PIPE
-    import time
     from datetime import date, timedelta
     try:
         import coloredlogs
