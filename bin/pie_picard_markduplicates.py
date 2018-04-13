@@ -9,6 +9,9 @@ Copyright (c) 2018 Northwell Health. All rights reserved.
 
 #import required modules for the script
 from __future__ import print_function
+import os
+import sys
+import logging
 from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 from subprocess import Popen, PIPE
@@ -33,10 +36,57 @@ __version__ = '.'.join(__version_info__)
 __date__ = '2018-02-12'
 __updated__ = '2018-02-15'
 
+def picard_std_args(parser):
+    parser.add_arguments(
+        "-tmp",
+        "--tmp_dir",
+        dest="tmp_dir",
+        default="/scratch/",
+        help="path to the temporary directory")
+    parser.add_arguments(
+        "-s",
+        "--validation_stringency",
+        dest="validation_stringency",
+        default="SILENT",
+        help=
+        "Validation stringency for all SAM files read by this program. Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.[default=SILENT]"
+    )
+    parser.add_arguments(
+        "-c",
+        "--compression_level",
+        dest="compression_level",
+        default="5",
+        help=
+        "Compression level for all compressed files created (e.g. BAM and GELI).[default=5]"
+    )
+    parser.add_arguments(
+        "-ci",
+        "--create_index",
+        dest="create_index",
+        default="true",
+        help=
+        "Whether to create a BAM index when writing a coordinate-sorted BAM file.[default=true]"
+    )
+    parser.add_arguments(
+        "-cm",
+        "--create_md5_file",
+        dest="create_md5_file",
+        default="false",
+        help=
+        "Whether to create an MD5 digest for any BAM or FASTQ files created.[default=false]"
+    )
+    parser.add_arguments(
+        "-ref",
+        "--reference_sequence",
+        dest="reference_sequence",
+        choices=pie.util.genomes.keys(),
+        require=True,
+        help="Reference sequence file.[required]")
+    return (parser)
 
 # process the given arguments from the command line
 def process_command_line(argv):
-    import sys,os,logging
+
     # get the global log variable
     global LOG
     # processing to see if args are given
@@ -65,7 +115,7 @@ USAGE
     parser = ArgumentParser(
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
-    parser = pie.util.picard_std_args(parser)
+    parser = picard_std_args(parser)
     # define options here:
     parser.add_argument(
         "-p",
@@ -135,7 +185,7 @@ USAGE
 
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
-    import sys,os,logging
+
     args = process_command_line(argv)
     cmd = ""
     picard = pie.util.programs['picard'][args.picard_version]
@@ -213,7 +263,7 @@ def main(argv=None):
 
 
 def setlogging(logfile=None, logger_name=None):
-    import sys,os,logging
+
     logger = logging.getLogger(logger_name)
     formatter = logging.Formatter(
         fmt='%(asctime)s, %(name)s[%(process)d] %(levelname)s %(message)s',
@@ -246,5 +296,4 @@ if __name__ == '__main__':
     end_time = time.time()
     totaltime = str(timedelta(seconds=end_time - start_time))
     LOG.info("Elapsed time was %s", totaltime)
-    import sys
     sys.exit(status)
