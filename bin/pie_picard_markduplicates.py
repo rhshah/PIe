@@ -37,13 +37,13 @@ __date__ = '2018-02-12'
 __updated__ = '2018-02-15'
 
 def picard_std_args(parser):
-    parser.add_arguments(
+    parser.add_argument(
         "-tmp",
         "--tmp_dir",
         dest="tmp_dir",
         default="/scratch/",
         help="path to the temporary directory")
-    parser.add_arguments(
+    parser.add_argument(
         "-s",
         "--validation_stringency",
         dest="validation_stringency",
@@ -59,7 +59,7 @@ def picard_std_args(parser):
         help=
         "Compression level for all compressed files created (e.g. BAM and GELI).[default=5]"
     )
-    parser.add_arguments(
+    parser.add_argument(
         "-ci",
         "--create_index",
         dest="create_index",
@@ -67,7 +67,7 @@ def picard_std_args(parser):
         help=
         "Whether to create a BAM index when writing a coordinate-sorted BAM file.[default=true]"
     )
-    parser.add_arguments(
+    parser.add_argument(
         "-cm",
         "--create_md5_file",
         dest="create_md5_file",
@@ -75,7 +75,7 @@ def picard_std_args(parser):
         help=
         "Whether to create an MD5 digest for any BAM or FASTQ files created.[default=false]"
     )
-    parser.add_arguments(
+    parser.add_argument(
         "-ref",
         "--reference_sequence",
         dest="reference_sequence",
