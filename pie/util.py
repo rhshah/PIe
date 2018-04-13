@@ -2,7 +2,6 @@ import json
 import logging
 import os
 import sys
-import argparse
 
 RESOURCE_FILE = os.getenv('PIE_RESOURCE_CONFIG', "pie_resources.json")
 JSON_CONFIG = json.load(open(RESOURCE_FILE))

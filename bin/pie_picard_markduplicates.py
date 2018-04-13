@@ -38,7 +38,7 @@ __updated__ = '2018-02-15'
 
 # process the given arguments from the command line
 def process_command_line(argv):
-    from pie.util import programs, picard_std_args
+    import pie
     # get the global log variable
     global LOG
     # processing to see if args are given
@@ -67,12 +67,12 @@ USAGE
     parser = ArgumentParser(
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
-    parser = picard_std_args(parser)
+    parser = pie.util.picard_std_args(parser)
     # define options here:
     parser.add_argument(
         "-p",
         "--picard_version",
-        choices=programs['picard'].keys(),
+        choices=pie.util.programs['picard'].keys(),
         required=True,
         dest="picard_version",
         help="select which version of bwa you will like to run")
@@ -137,10 +137,10 @@ USAGE
 
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
-    from pie.util import programs,genomes
+    import pie
     args = process_command_line(argv)
     cmd = ""
-    picard = programs['picard'][args.picard_version]
+    picard = pie.util.programs['picard'][args.picard_version]
     cmd = cmd + picard + " MarkDuplicates"
     if (args.input_bam):
         input_bam = " I=" + str(args.input_bam)
@@ -152,7 +152,7 @@ def main(argv=None):
         output_bam = " O=" + args.output_bam
         cmd = cmd + output_bam
     if (args.reference_sequence):
-        reference_sequence = " R=" + genomes[args.reference_sequence]['bwa_fasta']
+        reference_sequence = " R=" + pie.util.genomes[args.reference_sequence]['bwa_fasta']
         cmd = cmd + reference_sequence
     if (args.optical_duplicate_pixel_distance):
         optical_duplicate_pixel_distance = " OPTICAL_DUPLICATE_PIXEL_DISTANCE=" + args.optical_duplicate_pixel_distance
