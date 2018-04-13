@@ -8,7 +8,7 @@ Copyright (c) 2018 Northwell Health. All rights reserved.
 """
 #Picard Standard Arguments
 def picard_std_args(parser):
-    from util import genomes
+    #from util import genomes
     parser.add_argument(
         "-tmp",
         "--tmp_dir",
@@ -51,7 +51,7 @@ def picard_std_args(parser):
         "-ref",
         "--reference_sequence",
         dest="reference_sequence",
-        choices=genomes.keys(),
+        #choices=genomes.keys(),
         required=True,
         help="Reference sequence file.[required]")
     return (parser)
