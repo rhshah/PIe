@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+util.py
+
+Created by Ronak Shah on April 12, 2018.
+Copyright (c) 2018 Northwell Health. All rights reserved.
+"""
 import json
 import logging
 import os
