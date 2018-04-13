@@ -80,7 +80,7 @@ def picard_std_args(parser):
         "--reference_sequence",
         dest="reference_sequence",
         choices=pie.util.genomes.keys(),
-        require=True,
+        required=True,
         help="Reference sequence file.[required]")
     return (parser)
 
