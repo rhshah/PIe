@@ -9,23 +9,19 @@ Copyright (c) 2018 Northwell Health. All rights reserved.
 
 #import required modules for the script
 from __future__ import print_function
+from argparse import ArgumentParser
+from argparse import RawDescriptionHelpFormatter
+from subprocess import Popen, PIPE
 import time
-def imports():
-    import os
-    import sys
-    import logging
-    from argparse import ArgumentParser
-    from argparse import RawDescriptionHelpFormatter
-    from subprocess import Popen, PIPE
-    from datetime import date, timedelta
-    try:
-        import coloredlogs
-    except ImportError:
-        print(
-            "pie_picard_markduplicates: coloredlogs is not installed, please install it if you wish to see color in logs on standard out."
-        )
-        pass
-    import pie
+from datetime import date, timedelta
+try:
+    import coloredlogs
+except ImportError:
+    print(
+        "pie_picard_markduplicates: coloredlogs is not installed, please install it if you wish to see color in logs on standard out."
+    )
+    pass
+import pie
 
 # initialize global logger
 LOG = None
@@ -40,7 +36,7 @@ __updated__ = '2018-02-15'
 
 # process the given arguments from the command line
 def process_command_line(argv):
-    imports()
+    import sys,os,logging
     # get the global log variable
     global LOG
     # processing to see if args are given
@@ -139,7 +135,7 @@ USAGE
 
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
-    imports()
+    import sys,os,logging
     args = process_command_line(argv)
     cmd = ""
     picard = pie.util.programs['picard'][args.picard_version]
@@ -217,7 +213,7 @@ def main(argv=None):
 
 
 def setlogging(logfile=None, logger_name=None):
-    imports()
+    import sys,os,logging
     logger = logging.getLogger(logger_name)
     formatter = logging.Formatter(
         fmt='%(asctime)s, %(name)s[%(process)d] %(levelname)s %(message)s',
@@ -250,4 +246,5 @@ if __name__ == '__main__':
     end_time = time.time()
     totaltime = str(timedelta(seconds=end_time - start_time))
     LOG.info("Elapsed time was %s", totaltime)
+    import sys
     sys.exit(status)
