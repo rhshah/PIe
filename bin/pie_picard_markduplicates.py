@@ -8,8 +8,8 @@ Copyright (c) 2018 Northwell Health. All rights reserved.
 """
 
 #import required modules for the script
+from __future__ import print_function
 def imports():
-    from __future__ import print_function
     import os
     import sys
     import logging
