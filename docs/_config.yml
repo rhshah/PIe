@@ -1,1 +1,8 @@
+# Site Setting
+title: Precesion Informatics engine (PIe)
+email: rshah22@northwell.edu
+description: > 
+  This package allows you run bioinformatics tools without the need to specify certain standard resource. 
+  It also helps to run this programs as Common Workflow Language (CWL) using execution engine like TOIL.
+baseurl: 
 theme: jekyll-theme-leap-day
