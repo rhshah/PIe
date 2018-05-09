@@ -16,6 +16,7 @@ permalink: pretty
 liquid:
   error_mode: strict
 
+
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-leap-day
