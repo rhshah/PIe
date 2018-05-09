@@ -1,8 +1,7 @@
 # Site Setting
-title: Precesion Informatics engine (PIe)
+title: PIe
 description: > 
-  This package allows you run bioinformatics tools without the need to specify certain standard resource. 
-  It also helps to run this programs as Common Workflow Language (CWL) using execution engine like TOIL.
+  Precesion Informatics engine (PIe) moving parts to writing portable, reporducible workflow.
 author: Ronak H Shah
 author_email: rshah22@northwell.edu
 
@@ -50,7 +49,7 @@ collections:
 defaults:
   # _cwl
   - scope:
-      path: "_cwl"
+      path: ""
       type: cwl
     values:
       layout: cwl
