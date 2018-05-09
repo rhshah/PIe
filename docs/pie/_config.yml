@@ -55,6 +55,12 @@ defaults:
   # _cwl
   - scope:
       path: ""
-      type: cwl
+      type: /pie/cwl
     values:
       layout: page
+
+# Sidebar
+search_in_topnav: true
+search_in_sidebar: false
+toggle-sidebar-button: none
+navbar-toggle: none
