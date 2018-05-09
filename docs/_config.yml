@@ -42,9 +42,9 @@ paginate_path: /page:num/
 
 # Collections
 collections:
-  recipes:
+  cwl:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:cwl/:name
 
 # Front Matter Defaults
 defaults:
@@ -53,5 +53,5 @@ defaults:
       path: "_cwl"
       type: cwl
     values:
-      layout: post
+      layout: cwl
       read_time: true
