@@ -48,14 +48,14 @@ paginate_path: /page:num/
 collections:
   cwl:
     output: true
-    permalink: /:cwl/:name
+    permalink: /:cwl/:path/
 
 # Front Matter Defaults
 defaults:
   # _cwl
   - scope:
       path: ""
-      type: /pie/cwl
+      type: cwl
     values:
       layout: page
 
