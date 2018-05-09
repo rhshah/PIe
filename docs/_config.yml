@@ -44,7 +44,7 @@ paginate: 10
 collections:
   cwl:
     output: true
-    permalink: /:cwl/:name
+    permalink: /:cwl/:path/
 
 # Front Matter Defaults
 defaults:
