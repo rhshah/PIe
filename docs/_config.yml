@@ -1,13 +1,57 @@
 # Site Setting
 title: Precesion Informatics engine (PIe)
 description: > 
-  This package allows you run bioinformatics tools 
-  without the need to specify certain standard resource. 
-  It also helps to run this programs as 
-  Common Workflow Language (CWL) using execution engine like TOIL.
+  This package allows you run bioinformatics tools without the need to specify certain standard resource. 
+  It also helps to run this programs as Common Workflow Language (CWL) using execution engine like TOIL.
 author: Ronak H Shah
 author_email: rshah22@northwell.edu
-markdown: rdiscount
+
 permalink: pretty
-paginate: 3
+
+
+# Liquid
+liquid:
+  error_mode: strict
+
+# Build settings
+markdown: rdiscount
 theme: jekyll-theme-leap-day
+plugins: # previously gems
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+feed:
+  path: atom.xml
+
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+# Collections
+collections:
+  recipes:
+    output: true
+    permalink: /:collection/:path/
+
+# Front Matter Defaults
+defaults:
+  # _cwl
+  - scope:
+      path: "_cwl"
+      type: cwl
+    values:
+      layout: post
+      read_time: true
