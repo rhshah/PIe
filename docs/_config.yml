@@ -266,10 +266,16 @@ defaults:
       path: ""
       type: cwl
     values:
-      layout: Page
+      layout: page
       author_profile: true
       read_time: true
       comments: # true
       share: true
       related: true
 
+
+# Sidebar
+search_in_topnav: true
+search_in_sidebar: false
+toggle-sidebar-button: none
+navbar-toggle: none
