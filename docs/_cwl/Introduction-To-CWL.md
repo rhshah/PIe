@@ -1,5 +1,3 @@
-This is a small example of how to wrap python scripts with CWL to be called from cwltool or toil-cwl-runner
-
 ### Getting cwltool installed
 
 ### 1. Create a new virtual environment

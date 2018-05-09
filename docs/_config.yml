@@ -2,7 +2,7 @@
 title: PIe
 description: > 
   Precesion Informatics engine (PIe), a place for storing 
-  moving parts to writing portable, reporducible workflow.
+  moving parts to writing portable, flexible and reporducible workflow.
 author: Ronak H Shah
 author_email: rshah22@northwell.edu
 
@@ -53,4 +53,4 @@ defaults:
       path: ""
       type: cwl
     values:
-      layout: cwl
+      layout: page
