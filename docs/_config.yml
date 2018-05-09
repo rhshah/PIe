@@ -5,7 +5,7 @@ description: >
   Precesion Informatics engine (PIe), a place for storing 
   moving parts to writing portable, flexible and reporducible workflow.
 baseurl: "/pie"
-url: https://northwellhealth-humangenomics.github.io/PIe/
+url: https://northwellhealth-humangenomics.github.io/
 author: Ronak H Shah
 author_email: rshah22@northwell.edu
 
