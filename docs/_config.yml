@@ -1,8 +1,11 @@
 # Site Setting
+lang: en-US
 title: PIe
 description: > 
   Precesion Informatics engine (PIe), a place for storing 
   moving parts to writing portable, flexible and reporducible workflow.
+baseurl: "/pie"
+url: https://northwellhealth-humangenomics.github.io/PIe/
 author: Ronak H Shah
 author_email: rshah22@northwell.edu
 
@@ -10,23 +13,23 @@ permalink: pretty
 
 
 # Liquid
-#liquid:
-#  error_mode: strict
+liquid:
+  error_mode: strict
 
 # Build settings
-markdown: rdiscount
+markdown: kramdown
 theme: jekyll-theme-leap-day
 plugins: # previously gems
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
-#feed:
-#  path: atom.xml
+feed:
+  path: atom.xml
 
 # Pagination - https://jekyllrb.com/docs/pagination/
 paginate: 10
-#paginate_path: /page:num/
+paginate_path: /page:num/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
@@ -50,7 +53,7 @@ collections:
 defaults:
   # _cwl
   - scope:
-      path: ""
-      type: cwl
+      path: "_cwl"
+      type: posts
     values:
       layout: page
