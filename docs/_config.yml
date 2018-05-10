@@ -277,7 +277,7 @@ defaults:
     values:
       layout: single
       author_profile: false
-      read_time: true
+      read_time: false
       comments: # true
       share: true
       related: true 
@@ -289,11 +289,13 @@ defaults:
       type: cwl
     values:
       layout: single
-      author_profile: true
-      read_time: true
+      author_profile: false
+      read_time: false
       comments: # true
       share: true
       related: true
+      sidebar:
+        nav: "cwl"
   # _python
   - scope:
       path: ""
@@ -305,6 +307,8 @@ defaults:
       comments: # true
       share: true
       related: true
+      sidebar:
+        nav: "docs"
   # _miscellaneous
   - scope:
       path: ""
@@ -316,10 +320,12 @@ defaults:
       comments: # true
       share: true
       related: true
+      sidebar:
+        nav: "docs"
 
 
 # Sidebar
-search_in_topnav: true
-search_in_sidebar: false
-toggle-sidebar-button: none
-navbar-toggle: none
+#search_in_topnav: true
+#search_in_sidebar: false
+#toggle-sidebar-button: none
+#navbar-toggle: none

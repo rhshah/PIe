@@ -8,4 +8,4 @@ redirect_from:
 toc: true
 ---
 
-# Installing miniconda
+#### Installing miniconda

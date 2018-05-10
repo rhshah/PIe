@@ -9,7 +9,7 @@ toc: true
 ---
 
 [^structure]: See [**Structure** page]({{ "/docs/structure/" | relative_url }}) for a list of files and what they do.
-[^anaconda]: See [**Structure** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda.
+[^anaconda]: See [**Anaconda** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda for bioinformatics tools.
 
 ### PIe has three components in it:
 1. JSON based configuration
