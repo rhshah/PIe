@@ -1,4 +1,12 @@
-### Getting cwltool installed
+---
+title: "Getting cwltool installed"
+permalink: /cwl/intro-to-cwltool/
+excerpt: "How to use cwltool to exwcute cwl"
+last_modified_at: 2018-05-09T15:58:49-04:00
+redirect_from:
+  - /theme-setup/
+toc: true
+---
 
 ### 1. Create a new virtual environment
 

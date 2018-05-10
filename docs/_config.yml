@@ -20,9 +20,9 @@ title                    : "PIe"
 title_separator          : "-"
 name                     : "Ronak H Shah"
 description              : "Precesion Informatics engine (PIe), a place for storing moving parts to writing portable, flexible and reporducible workflow."
-url                      : "https://northwellhealth-humangenomics.github.io/PIe/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  :  # the subpath of your site, e.g. "/blog"
-repository               : #"NorthwellHealth-HumanGenomics/PIe" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+url                      : "https://northwellhealth-humangenomics.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : "/PIe" # the subpath of your site, e.g. "/blog"
+repository               : "NorthwellHealth-HumanGenomics/PIe" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -197,7 +197,7 @@ sass:
 permalink: pretty #/:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: America/New_York
 
 
 # Plugins (previously gems:)
@@ -255,18 +255,60 @@ compress_html:
 
 # Collections
 collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
   cwl:
     output: true
-    permalink: /:cwl/:path/
+    permalink: /:collection/:path/
+  python:
+    output: true
+    permalink: /:collection/:path/
+  miscellaneous:
+    output: true
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
   # _cwl
   - scope:
       path: ""
       type: cwl
     values:
-      layout: page
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+  # _python
+  - scope:
+      path: ""
+      type: python
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: # true
+      share: true
+      related: true
+  # _miscellaneous
+  - scope:
+      path: ""
+      type: miscellaneous
+    values:
+      layout: single
       author_profile: true
       read_time: true
       comments: # true
