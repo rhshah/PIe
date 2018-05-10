@@ -5,7 +5,7 @@ main:
   - title: "About"
     url: https://northwellhealth-humangenomics.github.io/PIe/
   - title: "CWL"
-    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwltool
+    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwl
   - title: "Python"
     url: https://northwellhealth-humangenomics.github.io/PIe/python/
   - title: "Miscellaneous"
@@ -25,6 +25,13 @@ docs:
       - title: "Installing Anaconda"
         url: /docs/anaconda
 
+cwl:
+  - title: Common Workflow Language (CWL) 101
+    children:
+      - title: "Introduction to CWL"
+        url: /docs/intro-to-cwl/
+      - title: "Installing and using cwltool"
+        url: /docs/intro-to-cwltool/
   
   # sidebar navigation list sample
 sidebar-sample:
