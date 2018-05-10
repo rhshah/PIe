@@ -5,7 +5,7 @@ main:
   - title: "About"
     url: https://northwellhealth-humangenomics.github.io/PIe/
   - title: "CWL"
-    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/
+    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwltool
   - title: "Python"
     url: https://northwellhealth-humangenomics.github.io/PIe/python/
   - title: "Miscellaneous"

@@ -1,6 +1,6 @@
 ---
 title: "Getting cwltool installed"
-permalink: /docs/cwl/intro-to-cwltool/
+permalink: /cwl/intro-to-cwltool/
 excerpt: "How to use cwltool to execute cwl"
 last_modified_at: 2018-05-09T15:58:49-04:00
 redirect_from:
