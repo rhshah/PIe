@@ -20,9 +20,9 @@ docs:
         url: /docs/quick-start-guide/
       - title: "Structure"
         url: /docs/structure/
-  -  title: Anaconda
+  - title: Anaconda
      children: 
-      -title: "Installing Anaconda"
+      - title: "Installing Anaconda"
         url: /docs/anaconda
 
   
