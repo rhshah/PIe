@@ -15,7 +15,7 @@ toc: true
 ├── CHANGES.md
 ├── LICENSE
 ├── README.md
-├── bin
+├── bin #has all the scripts written in python
 │   ├── pie_bwa_mem.py
 │   ├── pie_cutadapt.py
 │   ├── pie_delly.py
@@ -23,10 +23,10 @@ toc: true
 │   ├── pie_picard_markduplicates.py
 │   ├── pie_pindel.py
 │   └── pie_vardict.py
-├── cwl
+├── cwl #has scripts cwl YAML format scripts converted from python using argparse2tool
 │   ├── pie_cutadapt.cwl
 │   └── pie_picard_markduplicates.cwl
-├── docs
+├── docs #Documentation and webhosting using Github-pages
 │   ├── Gemfile
 │   ├── Gemfile.lock
 │   ├── _config.yml
@@ -40,7 +40,7 @@ toc: true
 │   ├── images
 │   ├── index.md
 │   └── minimal-mistakes.scss
-├── pie
+├── pie #place where resources stay and all the behind the scene majic happens.
 │   ├── __init__.py
 │   ├── _version.py
 │   ├── data
