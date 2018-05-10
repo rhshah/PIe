@@ -26,12 +26,12 @@ docs:
         url: /docs/anaconda
 
 cwl:
-  - title: Common Workflow Language (CWL) 101
+  - title: Common Workflow Language 101
     children:
       - title: "Introduction to CWL"
-        url: /docs/intro-to-cwl/
+        url: /cwl/intro-to-cwl/
       - title: "Installing and using cwltool"
-        url: /docs/intro-to-cwltool/
+        url: /cwl/intro-to-cwltool/
   
   # sidebar navigation list sample
 sidebar-sample:
