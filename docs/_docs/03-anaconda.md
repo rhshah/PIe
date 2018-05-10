@@ -8,7 +8,7 @@ redirect_from:
 toc: true
 ---
 
-**Table of Contents**
+#### Table of Contents
 
 - [Installing Anaconda](#installing-anaconda)
 	- [Download](#download)
@@ -94,4 +94,4 @@ To leave the environment, use this command:
 
 ### <img title="diamond_shape_with_a_dot_inside" alt="diamond_shape_with_a_dot_inside" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a0.png" height="25" width="25" align="absmiddle"> Reference
 
-* Reference [Install Anaconda](https://github.com/vr2262/scientific-python-tutorial/blob/master/docs/anaconda-install.md)
+- [Install Anaconda](https://github.com/vr2262/scientific-python-tutorial/blob/master/docs/anaconda-install.md)
