@@ -5,9 +5,9 @@ main:
   - title: "About"
     url: https://northwellhealth-humangenomics.github.io/PIe/
   - title: "CWL"
-    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwl
+    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwl/
   - title: "Python"
-    url: https://northwellhealth-humangenomics.github.io/PIe/python/
+    url: https://northwellhealth-humangenomics.github.io/PIe/python/index/
   - title: "Miscellaneous"
     url: https://northwellhealth-humangenomics.github.io/PIe/miscellaneous/
   - title: "Sitemap"
@@ -32,7 +32,17 @@ cwl:
         url: /cwl/intro-to-cwl/
       - title: "Installing and using cwltool"
         url: /cwl/intro-to-cwltool/
-  
+
+python:
+  - title: Usage of scripts written in python
+    children:
+      - title: "pie_bwa_mem"
+        url: /python/bwa-mem/
+      - title: "pie_cutadapt"
+        url: /python/cutadapt/
+      - title: "pie_picard_markduplicates"
+        url: /python/picard-markduplicates/
+
   # sidebar navigation list sample
 sidebar-sample:
   - title: "Parent Page A"

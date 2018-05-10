@@ -1,0 +1,12 @@
+---
+title: "Index to help for Python tools"
+permalink: /python/index/
+excerpt: "List of python tools"
+last_modified_at: 2018-05-09T15:58:49-04:00
+redirect_from:
+  - /theme-setup/
+toc: true
+---
+
+[^pie_bwa_mem]: See [**pie_bwa_mem** page]({{ "/python/bwa-mem/" | relative_url }}) usage for bwa-mem.
+[^pie_cutadapt]: See [**pie_cutadapt** page]({{ "/python/cutadapt/" | relative_url }}) usage for cutadapt.

@@ -308,7 +308,7 @@ defaults:
       share: true
       related: true
       sidebar:
-        nav: "docs"
+        nav: "python"
   # _miscellaneous
   - scope:
       path: ""

@@ -8,7 +8,7 @@ redirect_from:
 toc: true
 ---
 
-[^Introduction-to-cwltool]: See [**Intorduction to cwltoo** page]({{ "/cwl/intro-to-cwltool/" | relative_url }}) How to use cwltool to execute cwl
+[^Introduction-to-cwltool]: See [**Intorduction to cwltool** page]({{ "/cwl/intro-to-cwltool/" | relative_url }}) How to use cwltool to execute cwl
 
 ## What is CWL
 
