@@ -1,6 +1,6 @@
 ---
-title: "About"
-permalink: /
+title: "About PIe"
+permalink: /about/index/
 excerpt: "About PIe."
 last_modified_at: 2018-05-09T15:58:49-04:00
 redirect_from:

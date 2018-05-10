@@ -255,6 +255,9 @@ compress_html:
 
 # Collections
 collections:
+  about:
+    output: true
+    permalink: /:collection/:path/
   docs:
     output: true
     permalink: /:collection/:path/
@@ -267,6 +270,7 @@ collections:
   miscellaneous:
     output: true
     permalink: /:collection/:path/
+  
 
 # Defaults
 defaults:
@@ -309,6 +313,19 @@ defaults:
       related: true
       sidebar:
         nav: "python"
+  # _about
+  - scope:
+      path: ""
+      type: about
+    values:
+      layout: single
+      author_profile: false
+      read_time: false
+      comments: # true
+      share: true
+      related: true
+      sidebar:
+        nav: "about"
   # _miscellaneous
   - scope:
       path: ""
