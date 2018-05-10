@@ -7,7 +7,6 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-** As taken from : https://raw.githubusercontent.com/vr2262/scientific-python-tutorial/master/docs/anaconda-install.md **
 
 **Table of Contents**
 
@@ -92,3 +91,7 @@ You should install IPython in your environment with this command:
 To leave the environment, use this command:
 
 `$ source deactivate`
+
+### <img title="diamond_shape_with_a_dot_inside" alt="diamond_shape_with_a_dot_inside" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a0.png" height="25" width="25" align="absmiddle"> Reference
+
+* Reference [Install Anaconda](https://github.com/vr2262/scientific-python-tutorial/blob/master/docs/anaconda-install.md)
