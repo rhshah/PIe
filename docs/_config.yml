@@ -21,7 +21,7 @@ title_separator          : "-"
 name                     : "Ronak H Shah"
 description              : "Precesion Informatics engine (PIe), a place for storing moving parts to writing portable, flexible and reporducible workflow."
 url                      : "https://northwellhealth-humangenomics.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/PIe/about" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/PIe" # the subpath of your site, e.g. "/blog"
 repository               : "NorthwellHealth-HumanGenomics/PIe" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)

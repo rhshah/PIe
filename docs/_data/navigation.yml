@@ -1,7 +1,7 @@
 # main links
 main:
   - title: "About"
-    url: https://northwellhealth-humangenomics.github.io/PIe/about/
+    url: https://northwellhealth-humangenomics.github.io/PIe/about/index/
   - title: "Quick-Start Guide"
     url: https://northwellhealth-humangenomics.github.io/PIe/docs/quick-start-guide/
   - title: "CWL"
