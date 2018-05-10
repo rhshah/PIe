@@ -1,11 +1,3 @@
----
-title: "About PIe"
-excerpt: "About PIe."
-last_modified_at: 2018-05-09T15:58:49-04:00
-redirect_from:
-  - /theme-setup/
-toc: true
----
 # Precision Informatics engine (PIe)
 
 ### PIe has three components in it:
