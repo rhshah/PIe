@@ -21,7 +21,7 @@ docs:
       - title: "Structure"
         url: /docs/structure/
   - title: Anaconda
-     children: 
+    children: 
       - title: "Installing Anaconda"
         url: /docs/anaconda
 
