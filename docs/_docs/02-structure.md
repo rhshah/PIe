@@ -11,7 +11,7 @@ toc: true
 ### Organization of the package
 
 ```bash
-.
+
 ├── CHANGES.md
 ├── LICENSE
 ├── README.md
