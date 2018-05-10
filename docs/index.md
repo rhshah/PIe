@@ -1,7 +1,13 @@
+---
+title: "About"
+permalink: /
+excerpt: "About PIe."
+last_modified_at: 2018-05-09T15:58:49-04:00
+redirect_from:
+  - /theme-setup/
+toc: true
+---
 # Precision Informatics engine (PIe)
-Python wrapper for bioinformatics tools with corresponding CWL
-
-## Overview
 
 ### PIe has three components in it:
 1. JSON based configuration

@@ -1,6 +1,4 @@
 # Precision Informatics engine (PIe)
-Python wrapper for tools 
-
 
 ### PIe has three components in it:
 1. JSON based configuration
