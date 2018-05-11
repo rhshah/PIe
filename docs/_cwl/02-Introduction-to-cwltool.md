@@ -2,7 +2,8 @@
 title: "Installing cwltool to execute cwl YAML"
 permalink: /cwl/intro-to-cwltool/
 excerpt: "How to use cwltool to execute cwl"
-last_modified_at: 2018-05-11T15:12:19-04:00
+date:
+last_modified_at:
 redirect_from:
   - /theme-setup/
 toc: true

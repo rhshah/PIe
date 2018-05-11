@@ -2,7 +2,8 @@
 title: "Introduction to cwl as to use in PIe"
 permalink: /cwl/intro-to-cwl/
 excerpt: "What is CWL"
-last_modified_at: 2018-05-11T15:12:19-04:00
+ldate:
+last_modified_at:
 redirect_from:
   - /theme-setup/
 toc: true

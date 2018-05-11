@@ -4,7 +4,8 @@ classes:
   - landing
   - dark-theme
 excerpt: "Precision Informatics engine (PIe) help documents"
-last_modified_at: 2018-05-11T15:12:19-04:00
+date:
+last_modified_at:
 tags: [python, cwl, json, toil]
 header:
   image: /assets/images/background.jpg
