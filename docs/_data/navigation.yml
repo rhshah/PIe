@@ -10,8 +10,6 @@ main:
     url: /python/index/
   - title: "Miscellaneous"
     url: /miscellaneous/
-  - title: "Sitemap"
-    url: /PIe/sitemap/
 
 docs:
   - title: Getting Started

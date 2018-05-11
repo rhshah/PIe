@@ -6,11 +6,11 @@ classes:
 excerpt: "Precision Informatics engine (PIe) help documents"
 tags: [python, cwl, json, toil]
 header:
-  overlay_image: /assets/images/background.jpg
-  overlay_filter: 0.5
-  #credit: Canva
-  #creditlink: https://www.canva.com/
+  image: /assets/images/background.jpg
+  caption: "Photo credit: [**Canva**](https://www.canva.com/)"
 ---
+
+# Welcome to Precision Informatics engine (PIe) help documents
 
 ## PIe has three components
 
