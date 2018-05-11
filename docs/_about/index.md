@@ -9,7 +9,10 @@ toc: true
 ---
 # Precision Informatics engine (PIe)
 
-PIe is being developed at Northwell Health as part of Medical Genetics and Human Genomics Initiative. The tool will be used for:
+PIe is being developed at Northwell Health as part of Medical Genetics and Human Genomics Initiative.
+
+The tool will be used for:
+
 1.Ad-hoc analysis
 2.Creating workflows nad running workflows
 3.Deploying on multiple enviornments likes:
