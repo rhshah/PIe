@@ -13,9 +13,9 @@ PIe is being developed at Northwell Health as part of Medical Genetics and Human
 
 The tool will be used for:
 
-1.Ad-hoc analysis
-2.Creating workflows nad running workflows
-3.Deploying on multiple enviornments likes:
-  a. High Performance Computing Cluster
-  b. MacOS
-  c. Cloud Enviornment
+- Ad-hoc analysis
+- Creating workflows nad running workflows
+- Deploying on multiple enviornments likes:
+  - High Performance Computing Cluster
+  - MacOS
+  - Cloud Enviornment
