@@ -100,7 +100,7 @@ analytics:
 author:
   name             : "Ronak Shah"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
+  bio              : "Computational Biologist"
   location         : "Somewhere"
   email            : "rshah22@northwell.edu"
   uri              :
@@ -286,7 +286,7 @@ defaults:
       path: ""
       type: docs
     values:
-      layout: collection
+      layout: single
       author_profile: false
       read_time: true
       comments: # true
@@ -299,7 +299,7 @@ defaults:
       path: ""
       type: cwl
     values:
-      layout: collection
+      layout: single
       author_profile: false
       read_time: true
       comments: # true
@@ -312,7 +312,7 @@ defaults:
       path: ""
       type: python
     values:
-      layout: collection
+      layout: single
       author_profile: false
       read_time: true
       comments: # true
@@ -338,7 +338,7 @@ defaults:
       path: ""
       type: miscellaneous
     values:
-      layout: collection
+      layout: single
       author_profile: true
       read_time: true
       comments: # true
@@ -349,7 +349,7 @@ defaults:
 
 
 # Sidebar
-#search_in_topnav: true
-#search_in_sidebar: false
-#toggle-sidebar-button: none
-#navbar-toggle: none
+search_in_topnav: true
+search_in_sidebar: true
+toggle-sidebar-button: none
+navbar-toggle: none
