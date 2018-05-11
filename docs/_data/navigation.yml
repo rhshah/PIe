@@ -1,17 +1,17 @@
 # main links
 
-  - title: "About"
-    url: https://northwellhealth-humangenomics.github.io/PIe/about/index/
-  - title: "Quick-Start Guide"
-    url: https://northwellhealth-humangenomics.github.io/PIe/docs/quick-start-guide/
-  - title: "CWL"
-    url: https://northwellhealth-humangenomics.github.io/PIe/cwl/intro-to-cwl/
-  - title: "Python"
-    url: https://northwellhealth-humangenomics.github.io/PIe/python/index/
-  - title: "Miscellaneous"
-    url: https://northwellhealth-humangenomics.github.io/PIe/miscellaneous/
-  - title: "Sitemap"
-    url: https://northwellhealth-humangenomics.github.io/PIe/sitemap/
+- title: "About"
+  url: /about/index/
+- title: "Quick-Start Guide"
+ url: /docs/quick-start-guide/
+- title: "CWL"
+  url: /cwl/intro-to-cwl/
+- title: "Python"
+  url: /python/index/
+- title: "Miscellaneous"
+  url: /miscellaneous/
+- title: "Sitemap"
+  url: /PIe/sitemap/
 
 docs:
   - title: Getting Started
