@@ -195,8 +195,8 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/ #/:categories/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+#paginate: 5 # amount of posts to show
+#paginate_path: /page:num/
 timezone: America/New_York
 
 
@@ -258,18 +258,23 @@ collections:
   about:
     output: true
     permalink: /:collection/:path/
+    title: About
   docs:
     output: true
     permalink: /:collection/:path/
+    title: Documents
   cwl:
     output: true
     permalink: /:collection/:path/
+    title: CWL
   python:
     output: true
     permalink: /:collection/:path/
+    title: Python
   miscellaneous:
     output: true
     permalink: /:collection/:path/
+    title: Miscellaneous
   
 
 # Defaults
@@ -279,7 +284,7 @@ defaults:
       path: ""
       type: docs
     values:
-      layout: single
+      layout: collection
       author_profile: false
       read_time: false
       comments: # true
@@ -292,7 +297,7 @@ defaults:
       path: ""
       type: cwl
     values:
-      layout: single
+      layout: collection
       author_profile: false
       read_time: false
       comments: # true
@@ -305,7 +310,7 @@ defaults:
       path: ""
       type: python
     values:
-      layout: single
+      layout: collection
       author_profile: false
       read_time: false
       comments: # true
@@ -331,7 +336,7 @@ defaults:
       path: ""
       type: miscellaneous
     values:
-      layout: single
+      layout: collection
       author_profile: true
       read_time: true
       comments: # true
