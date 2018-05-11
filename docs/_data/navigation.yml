@@ -1,10 +1,9 @@
 # main links
-
 main:
   - title: "About"
     url: /about/index/
   - title: "Quick-Start Guide"
-  url: /docs/quick-start-guide/
+    url: /docs/quick-start-guide/
   - title: "CWL"
     url: /cwl/intro-to-cwl/
   - title: "Python"
