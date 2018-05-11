@@ -2,8 +2,7 @@
 title: "Quick-Start Guide"
 permalink: /docs/quick-start-guide/
 excerpt: "How to quickly install and setup PIe for use on linux platform."
-date:
-last_modified_at:
+last_modified_at: 2018-05-11T15:12:19-04:00
 redirect_from:
   - /theme-setup/
 toc: true
