@@ -22,17 +22,9 @@ usage: pie_picard_markduplicates.py [-h] [-tmp TMP_DIR]
                                     [-odpd OPTICAL_DUPLICATE_PIXEL_DISTANCE]
                                     -L LOGFILE
 
-pie_picard_markduplicates.py
-    Created by Ronak H Shah on 2018-02-12
-    Copyright (c) 2018 Northwell Health. All rights reserved.
-    Licensed under the Apache License 2.0
-    http://www.apache.org/licenses/LICENSE-2.0
-    Distributed on an "AS IS" basis without warranties
-    or conditions of any kind, either express or implied.
-
 USAGE
 
-optional arguments:
+arguments:
   -h, --help            show this help message and exit
   -tmp TMP_DIR, --tmp_dir TMP_DIR
                         path to the temporary directory

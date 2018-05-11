@@ -16,14 +16,6 @@ usage: pie_bwa_mem.py [-h] -b {default} -g
                       FASTQ1 [-f2 FASTQ2] [-R READ_GROUP] -o OUTPUT [-v] [-V]
                       [-t THREADS] [-T ALIGNMENT_SCORE] [-M] -L LOGFILE
 
-pie_bwa_mem.py
-    Created by Ronak H Shah on 2018-02-12
-    Copyright (c) 2018 Northwell Health. All rights reserved.
-    Licensed under the Apache License 2.0
-    http://www.apache.org/licenses/LICENSE-2.0
-    Distributed on an "AS IS" basis without warranties
-    or conditions of any kind, either express or implied.
-
 USAGE
 
 arguments:

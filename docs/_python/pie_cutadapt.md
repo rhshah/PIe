@@ -20,17 +20,9 @@ usage: pie_cutadapt.py [-h] -cv {default} [-ff FILE_FORMAT]
                        [-G READ2_5PRIME] [-b READ1_35PRIME] [-B READ2_35PRIME]
                        [-pf {any,both}] -L LOGFILE
 
-pie_cutadapt.py
-    Created by Ronak H Shah on 2018-02-14
-    Copyright (c) 2018 Northwell Health. All rights reserved.
-    Licensed under the Apache License 2.0
-    http://www.apache.org/licenses/LICENSE-2.0
-    Distributed on an "AS IS" basis without warranties
-    or conditions of any kind, either express or implied.
-
 USAGE
 
-optional arguments:
+ arguments:
   -h, --help            show this help message and exit
   -cv {default}, --cutadapt_version {default}
                         select which version of cutadapt you will like to run
