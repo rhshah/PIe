@@ -2,7 +2,7 @@
 title: "Usage of pie_cutadapt.py"
 permalink: /python/cutadapt/
 excerpt: "Help of using pie_cutadpat.py"
-last_modified_at: 2018-06-09T15:58:49-04:00
+last_modified_at: 
 redirect_from:
   - /theme-setup/
 toc: true

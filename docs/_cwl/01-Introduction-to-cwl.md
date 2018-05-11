@@ -2,13 +2,13 @@
 title: "Introduction to cwl as to use in PIe"
 permalink: /cwl/intro-to-cwl/
 excerpt: "What is CWL"
-last_modified_at: 2018-06-09T15:58:49-04:00
+last_modified_at: 
 redirect_from:
   - /theme-setup/
 toc: true
 ---
 
-[^Introduction-to-cwltool]: See [**Intorduction to cwltool** page]({{ "/cwl/intro-to-cwltool/" | relative_url }}) How to use cwltool to execute cwl
+[comment]: # [^Introduction-to-cwltool]: See [**Intorduction to cwltool** page]({{ "/cwl/intro-to-cwltool/" | relative_url }}) How to use cwltool to execute cwl
 
 ## What is CWL
 

@@ -2,7 +2,7 @@
 title: "About PIe"
 permalink: /about/index/
 excerpt: "About PIe."
-last_modified_at: 2018-05-09T15:58:49-04:00
+last_modified_at: 
 redirect_from:
   - /theme-setup/
 toc: true
