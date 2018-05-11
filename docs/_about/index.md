@@ -18,6 +18,8 @@ The tool will be used for:
   - MacOS
   - Cloud Enviornment
 
-### Contributors
+- - - -
 
-1. [Ronak H Shah](https://www.github.com/rhshah)
+## Contributors:
+
+- [Ronak H Shah](https://www.github.com/rhshah)

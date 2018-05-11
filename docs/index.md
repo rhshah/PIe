@@ -21,6 +21,8 @@ PIe came into existence because of the need to write flexible, portable and easy
 4. **Common Workflow Language (CWL)** : Convert the python wrapper to common workflow language specification.
 5. **Workflow of workflow** : We will join multiple CWL workflows togather to create a final workflow.
 
+- - - -
+
 ### Installing package
 
 Here is how to install these tools without sudo rights:
