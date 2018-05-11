@@ -302,7 +302,7 @@ defaults:
       read_time: false
       comments: # true
       share: true
-      related: true
+      related: false
       sidebar:
         nav: "cwl"
   # _python
@@ -315,7 +315,7 @@ defaults:
       read_time: false
       comments: # true
       share: true
-      related: true
+      related: false
       sidebar:
         nav: "python"
   # _about
@@ -328,7 +328,7 @@ defaults:
       read_time: false
       comments: # true
       share: true
-      related: true
+      related: false
       sidebar:
         nav: "about"
   # _miscellaneous
@@ -341,9 +341,9 @@ defaults:
       read_time: true
       comments: # true
       share: true
-      related: true
+      related: false
       sidebar:
-        nav: "docs"
+        nav: "miscellaneous"
 
 
 # Sidebar

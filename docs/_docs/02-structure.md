@@ -7,9 +7,6 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-
-### Organization of the package
-
 ```bash
 
 ├── CHANGES.md

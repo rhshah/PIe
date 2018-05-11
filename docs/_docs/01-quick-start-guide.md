@@ -11,11 +11,6 @@ toc: true
 [^structure]: See [**Structure** page]({{ "/docs/structure/" | relative_url }}) for a list of files and what they do.
 [^anaconda]: See [**Anaconda** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda for bioinformatics tools.
 
-### PIe has three components in it:
-1. JSON based configuration
-2. Python
-3. Common Workflow Language
-
 ### Installing package
 
 Here is how to install these tools without sudo rights:
@@ -35,5 +30,3 @@ if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 ```
-
- 

@@ -7,9 +7,6 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-
-## Steps for installing cwltool and using it
-
 ### 1. Create a new virtual environment
 
 - This can be done using `conda` or `virtualenv`
