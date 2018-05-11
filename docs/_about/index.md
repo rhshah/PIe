@@ -7,8 +7,6 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-# Precision Informatics engine (PIe)
-
 PIe is being developed at Northwell Health as part of Medical Genetics and Human Genomics Initiative.
 
 The tool will be used for:
@@ -19,3 +17,7 @@ The tool will be used for:
   - High Performance Computing Cluster
   - MacOS
   - Cloud Enviornment
+
+### Contributors
+
+1. [Ronak H Shah](https://www.github.com/rhshah)
