@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 locale                   : "en-US"
 title                    : "PIe"
 title_separator          : "-"
-name                     : "Ronak H Shah"
+name                     : "Precesion Infromatics engine (PIe)"
 description              : "Precesion Informatics engine (PIe), a place for storing moving parts to writing portable, flexible and reporducible workflow."
 url                      : "https://northwellhealth-humangenomics.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/PIe" # the subpath of your site, e.g. "/blog"
@@ -98,9 +98,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Ronak Shah"
+  name             : "NorthwellHealth-HumanGenomics"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Computational Biologist"
+  bio              : "Organization"
   location         : "New York, NY"
   email            : "rshah22@northwell.edu"
   uri              :
@@ -111,7 +111,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :  "rhshah"
+  github           :  "NorthwellHealth-HumanGenomics"
   gitlab           :
   google_plus      :
   keybase          :
