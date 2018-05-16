@@ -13,7 +13,7 @@ toc: true
 ---
 # Welcome to Precision Informatics engine (PIe) help documents
 
-PIe came into existence because of the need to write flexible, portable and easy to use tools.
+[PIe](https://github.com/NorthwellHealth-HumanGenomics/PIe) came into existence because of the need to write flexible, portable and easy to use tools.
 
 ## PIe components
 
