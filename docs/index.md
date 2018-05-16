@@ -18,8 +18,8 @@ toc: true
 ## PIe components
 
 1. **JSON based configuration** : JSON object is where we store all the resources with their versions.
-2. **Python Wrapper** : The concept here is to write wrapper in python around bioinformatics tools that allow you to execute the tools more easily by pre-selecing certain parameters. The presection happens using the JSON based configuration.
-3. **Containers** : In future, we will be using singularity and docker containers for the bioinformatics tools. But to start with we will use Bioconda.
+2. **Python Wrapper** : The concept here is to write wrapper in python around bioinformatics tools that allow you to execute the tools more easily by pre-selecing certain parameters. The pre-selection happens using the JSON based configuration.
+3. **Containers** : In future, we will be using singularity and docker containers for the bioinformatics tools. But to start with we will use Bioconda channel in Anaconda.
 4. **Common Workflow Language (CWL)** : Convert the python wrapper to common workflow language specification.
 5. **Workflow of workflow** : We will join multiple CWL workflows togather to create a final workflow.
 
