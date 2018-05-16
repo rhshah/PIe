@@ -7,7 +7,7 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-PIe is being developed at Northwell Health as part of Medical Genetics and Human Genomics Initiative.
+[PIe](https://github.com/NorthwellHealth-HumanGenomics/PIe) is being developed at Northwell Health as part of Medical Genetics and Human Genomics Initiative.
 
 The tool will be used for:
 
