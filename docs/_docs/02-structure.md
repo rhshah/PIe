@@ -1,5 +1,5 @@
 ---
-title: "Quick-Start Guide"
+title: "Organization of the package"
 permalink: /docs/structure/
 excerpt: "Structure of the package."
 last_modified_at: 2018-05-11T15:12:19-04:00
@@ -7,6 +7,9 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
+
+### Tree for the current organization of the package
+
 ```bash
 
 ├── CHANGES.md

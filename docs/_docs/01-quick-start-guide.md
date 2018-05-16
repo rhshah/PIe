@@ -15,7 +15,7 @@ toc: true
 
 #### To view the content of the package
 
-Go to PIe github page https://github.com/NorthwellHealth-HumanGenomics/PIe 
+Go to PIe github page: <https://github.com/NorthwellHealth-HumanGenomics/PIe>
 
 #### Here is how to install these tools without sudo rights
 
