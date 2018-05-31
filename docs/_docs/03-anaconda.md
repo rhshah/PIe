@@ -7,20 +7,7 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-
-#### Table of Contents
-
-- [Installing Anaconda](#installing-anaconda)
-	- [Download](#download)
-	- [Install](#install)
-		- [Linux](#linux)
-		- [Mac](#mac)
-		- [Windows](#windows)
-	- [Check your installation](#check-your-installation)
-	- [Create a virtual environment](#create-a-virtual-environment)
-
-Installing Anaconda
-===================
+# Installing Anaconda
 
 This tutorial assumes you will be using a Linux distribution, but includes Mac and Windows instructions as well.
 

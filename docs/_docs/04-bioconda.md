@@ -7,17 +7,9 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
+# Bioconda
 
-#### Table of Contents
-
-- [Bioconda](#bioconda)
-    - [Setting bioconda channel in anaconda](#setting-bioconda)
-	- [Install Packages](#install-packages)
-- [JSON object](#json-object)
-    - [Edit json object](#edit-json-object)
-    - [Set enviornmental variable](#set-enviormental-variable)
-
-## Bioconda
+This tutorial assumes you will be using a Linux distribution.
 
 **Please refer to [Bioconda](https://bioconda.github.io/) website for more information.**
 

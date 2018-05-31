@@ -12,32 +12,21 @@ toc: true
 [^anaconda]: See [**Anaconda** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda for bioinformatics tools.
 [^bioconda]: See [**Bioconda** page]({{ "/docs/bioconda/" | relative_url }}) for Using bioconda to install bioinformatics tools.
 
-## Table of Contents
-
-- [Installing PIe](#installing-anaconda)
-	- [Download](#download)
-	- [Install](#install)
-    - [Quick Access](#quick-access)
-- [Modifying the JSON resource object](#modifying-the-json-resource-object)
+# PIe
 
 ## Installing PIe
 
-To view the content of the package
-==================================
+### To view the content of the package
 
 Go to PIe github page: <https://github.com/NorthwellHealth-HumanGenomics/PIe>
 
-Download
-========
-
-
+### Download
 
 ```bash
 curl -LO https://github.com/NorthwellHealth-HumanGenomics/PIe/archive/master.zip
 ```
 
-Install
-=======
+### Install
 
 Install these tools **with sudo** rights:
 
@@ -55,8 +44,7 @@ cd PIe-master
 python setup.py install --user
 ```
 
-Quick Access
-============
+### Quick Access
 
 Add following to your **.bashrc** or **.bash_profile** for accessing the `pie_*` tools:
 
