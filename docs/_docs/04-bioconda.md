@@ -33,11 +33,11 @@ conda config --add channels bioconda
 
 ### Install Packages
 
-Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment::
+Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment:
 
     `conda install bwa`
 
-Or a new environment can be created::
+Or a new environment can be created:
 
     `conda create -n aligners bwa bowtie hisat star`
 
