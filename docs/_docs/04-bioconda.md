@@ -10,16 +10,19 @@ toc: true
 
 #### Table of Contents
 
-- [Setting bioconda channel in anaconda](#setting-bioconda)
+- [Bioconda](#bioconda)
+    - [Setting bioconda channel in anaconda](#setting-bioconda)
 	- [Install Packages](#install-packages)
 - [JSON object](#json-object)
     - [Edit json object](#edit-json-object)
     - [Set enviornmental variable](#set-enviormental-variable)
 
-Setting bioconda
-================
+Bioconda
+========
 
 **Please refer to [Bioconda](https://bioconda.github.io/) website for more information.**
+
+## Setting bioconda
 
 After installing conda you will need to add the bioconda channel as well as the
 other channels bioconda depends on. **It is important to add them in this
@@ -47,7 +50,7 @@ Or a new environment can be created::
 
     `conda create -n aligners bwa bowtie hisat star`
 
-## JSON onect
+## JSON object
 
 ### Edit JSON object
 
