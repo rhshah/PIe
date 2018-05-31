@@ -10,12 +10,14 @@ toc: true
 
 [^structure]: See [**Structure** page]({{ "/docs/structure/" | relative_url }}) for a list of files and what they do.
 [^anaconda]: See [**Anaconda** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda for bioinformatics tools.
+[^bioconda]: See [**Bioconda** page]({{ "/docs/bioconda/" | relative_url }}) for Using bioconda to install bioinformatics tools.
 
-#### Table of Contents
+## Table of Contents
 
 - [Installing PIe](#installing-anaconda)
 	- [Download](#download)
 	- [Install](#install)
+    - [Quick Access](#quick-access)
 - [Modifying the JSON resource object](#modifying-the-json-resource-object)
 
 ## Installing PIe

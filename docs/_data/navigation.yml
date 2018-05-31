@@ -22,6 +22,10 @@ docs:
     children: 
       - title: "Installing Anaconda"
         url: /docs/anaconda
+  - title: Bioconda
+    children: 
+      - title: "Using Bioconda and packages with PIe"
+        url: /docs/bioconda
 
 cwl:
   - title: Common Workflow Language 101
