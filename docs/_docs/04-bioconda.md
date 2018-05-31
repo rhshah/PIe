@@ -12,8 +12,9 @@ toc: true
 
 - [Setting bioconda channel in anaconda](#setting-bioconda)
 	- [Install Packages](#install-packages)
-- [Edit the JSON object](#edit-json-object)
-- [Set enviornmental variable](#set-enviormental-variable)
+- [JSON object](#json-object)
+    - [Edit json object](#edit-json-object)
+    - [Set enviornmental variable](#set-enviormental-variable)
 
 Setting bioconda
 ================
@@ -36,8 +37,7 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 ```
 
-Install packages
-================
+## Install Packages
 
 Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment::
 
@@ -47,9 +47,9 @@ Or a new environment can be created::
 
     `conda create -n aligners bwa bowtie hisat star`
 
+## JSON onect
 
-Edit JSON object
-================
+### Edit JSON object
 
 As we talked in introduction about JSON object which allows the scripts to know where the executables are located.
 
@@ -58,8 +58,7 @@ Thus now edit/add items in json object as required.
 You can make a copy of JSON object located here: `/PIe-master/pie/data/pie_resources.json`
 or modify it directly.
 
-Set enviornmental variable
-==========================
+### Set enviornmental variable
 
 For PIe package to know the location of the JSON object file please set the enviormental variable.
 
