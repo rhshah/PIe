@@ -17,12 +17,11 @@ toc: true
     - [Edit json object](#edit-json-object)
     - [Set enviornmental variable](#set-enviormental-variable)
 
-Bioconda
-========
+## Bioconda
 
 **Please refer to [Bioconda](https://bioconda.github.io/) website for more information.**
 
-## Setting bioconda
+### Setting bioconda
 
 After installing conda you will need to add the bioconda channel as well as the
 other channels bioconda depends on. **It is important to add them in this
@@ -40,7 +39,7 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 ```
 
-## Install Packages
+### Install Packages
 
 Bioconda is now enabled, so any packages on the bioconda channel can be installed into the current conda environment::
 
