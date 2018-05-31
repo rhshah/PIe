@@ -6,6 +6,8 @@ last_modified_at: 2018-05-11T15:12:19-04:00
 redirect_from:
   - /theme-setup/
 toc: true
+toc_label: "Table of Contents"
+toc_icon: "cog"
 ---
 
 [^pie_bwa_mem]: See [**pie_bwa_mem** page]({{ "/python/bwa-mem/" | relative_url }}) usage for bwa-mem.
