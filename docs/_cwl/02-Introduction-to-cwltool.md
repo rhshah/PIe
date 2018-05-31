@@ -38,7 +38,9 @@ echo $PATH
 
 ### Install the python tool you made (optional, only needed if trying to test with setup.py)
 
-`python setup.py install && python setup.py clean`
+```bash
+python setup.py install && python setup.py clean
+```
 
 This will install the example python script into your virtualenvironment's `/bin` folder
 This makes it so it can be referenced from your terminal, as well as from the cwl files
@@ -56,4 +58,6 @@ baseCommand
 
 ### With `cwltoil`
 
-`cwltoil sometool.cwl inputs.yaml --outdir /place_for_outputs`
+```bash
+cwltoil sometool.cwl inputs.yaml --outdir /place_for_outputs
+```
