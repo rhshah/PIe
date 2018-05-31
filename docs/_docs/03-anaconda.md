@@ -7,9 +7,9 @@ redirect_from:
   - /theme-setup/
 toc: true
 ---
-# Installing Anaconda
+# Anaconda
 
-This tutorial assumes you will be using a Linux distribution, but includes Mac and Windows instructions as well.
+**This tutorial assumes you will be using a Linux distribution, but includes Mac and Windows instructions as well.**
 
 ## Download
 
