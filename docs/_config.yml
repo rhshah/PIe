@@ -12,13 +12,13 @@
 
 #theme                    : "minimal-mistakes-jekyll"
 remote_theme             : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
 title                    : "PIe"
 title_separator          : "-"
-name                     : "Precesion Infromatics engine (PIe)"
+name                     : "Precesion Informatics engine (PIe)"
 description              : "Precesion Informatics engine (PIe), a place for storing moving parts to writing portable, flexible and reporducible workflow."
 url                      : "https://northwellhealth-humangenomics.github.io/" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "/PIe" # the subpath of your site, e.g. "/blog"
