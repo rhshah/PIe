@@ -56,10 +56,10 @@ Example:
 
 ```bash
 {
-    "programs": 
+    "programs":
     {
         "pie":
-        { 
+        {
             "default":""
         },
         "abra":
