@@ -12,9 +12,7 @@ toc: true
 [^anaconda]: See [**Anaconda** page]({{ "/docs/anaconda/" | relative_url }}) for installing miniconda and using bioconda for bioinformatics tools.
 [^bioconda]: See [**Bioconda** page]({{ "/docs/bioconda/" | relative_url }}) for Using bioconda to install bioinformatics tools.
 
-# PIe
-
-## Installing PIe
+# Installing PIe
 
 ### To view the content of the package
 
