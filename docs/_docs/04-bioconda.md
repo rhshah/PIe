@@ -52,6 +52,29 @@ Thus now edit/add items in json object as required.
 You can make a copy of JSON object located here: `/PIe-master/pie/data/pie_resources.json`
 or modify it directly.
 
+Example:
+
+```bash
+{
+    "programs": 
+    {
+        "pie":
+        { 
+            "default":""
+        },
+        "abra":
+        {
+            "default":""
+        },
+        "bwa":
+        {
+            "default":"/Users/rshah22/anaconda2/bin/bwa"
+            "v0.7.15":"/Users/rshah22/tools/bwa/v0.7.15/bwa"
+        }
+    }
+}
+```
+
 ### Set enviornmental variable
 
 For PIe package to know the location of the JSON object file please set the enviormental variable.
