@@ -18,7 +18,7 @@ toc: true
 Setting bioconda
 ================
 
-**Please refer to [Bioconda](https://bioconda.github.io/) website for more information.
+**Please refer to [Bioconda](https://bioconda.github.io/) website for more information.**
 
 After installing conda you will need to add the bioconda channel as well as the
 other channels bioconda depends on. **It is important to add them in this

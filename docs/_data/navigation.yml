@@ -22,9 +22,7 @@ docs:
     children: 
       - title: "Installing Anaconda"
         url: /docs/anaconda
-  - title: Bioconda
-    children: 
-      - title: "Using Bioconda and packages with PIe"
+      - title: Bioconda
         url: /docs/bioconda
 
 cwl:
