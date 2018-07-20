@@ -52,7 +52,7 @@ def picard_std_args(parser):
         "Validation stringency for all SAM files read by this program. Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.[default=SILENT]"
     )
     parser.add_argument(
-        "-c",
+        "-cp",
         "--compression_level",
         dest="compression_level",
         default="5",
@@ -203,7 +203,7 @@ def main(argv=None):
         reference_sequence = " R=" + pie.util.genomes[args.reference_sequence]['bwa_fasta']
         cmd = cmd + reference_sequence
     if (args.optical_duplicate_pixel_distance):
-        optical_duplicate_pixel_distance = " OPTICAL_DUPLICATE_PIXEL_DISTANCE=" + args.optical_duplicate_pixel_distance
+        optical_duplicate_pixel_distance = " OPTICAL_DUPLICATE_PIXEL_DISTANCE=" + str(args.optical_duplicate_pixel_distance)
         cmd = cmd + optical_duplicate_pixel_distance
     if (args.assume_sort_order):
         assume_sort_order = " ASSUME_SORT_ORDER=" + args.assume_sort_order
@@ -250,7 +250,7 @@ def main(argv=None):
         if (verbose):
             LOG.info(
                 "finished running picard for markduplicates,please find output in %s",
-                output_bam)
+                args.output_bam)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):
