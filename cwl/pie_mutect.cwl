@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 # This tool description was generated automatically by argparse2tool ver. 0.4.5
-# To generate again: $ pie_mutect.py --generate_cwl_tool
-# Help: $ pie_mutect.py --help_arg2cwl
+# To generate again: $ pie_mutect.py -go --generate_cwl_tool
+# Help: $ pie_mutect.py  --help_arg2cwl
 
 cwlVersion: v1.0
 
@@ -145,4 +145,18 @@ inputs:
 
 
 outputs:
-    []
+
+  output_bam_out:
+    type: File
+
+    doc: path to / name of the output BAM FILENAME for tumor mut sites [required]
+    outputBinding:
+      glob: $(inputs.output_bam.path)
+
+
+  vcf_output_out:
+    type: File
+
+    doc: File/path to output .vcf file if desired
+    outputBinding:
+      glob: $(inputs.vcf_output.path)
