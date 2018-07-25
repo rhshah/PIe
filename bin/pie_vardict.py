@@ -188,16 +188,6 @@ USAGE
     parser.add_argument(
         "-V", "--version", action="version", version=program_version_message)
     parser.add_argument(
-        "-qsub",
-        "--qsubPath",
-        dest="qsub",
-        help="Full Path to the qsub executables of SGE.")
-    parser.add_argument(
-        "-bsub",
-        "--bsubPath",
-        dest="bsub",
-        help="Full Path to the bsub executables of LSF.")
-    parser.add_argument(
         "-L",
         "--log",
         dest="logfile",
@@ -214,14 +204,7 @@ USAGE
 
 def ProcessArgs(args):
     if(args.verbose):
-        print ("I am currently processing the arguments.\n")
-    #Check qsub and bsub
-    if(args.qsub and args.bsub):
-       print ("Please give either qsub or bsub arguments. Script does not allow usage of both\n")
-       sys.exit(1)           
-   # if((not args.qsub) and (not args.bsub)):
-    #   print ("Please give either qsub or bsub arguments. None are provided\n")
-    #   sys.exit(1)      
+	print ("I am curretly processing the arguments.\n")
     tumorBam = os.path.basename(args.input_bam_t).rstrip('.bam')
     outvcf = tumorBam + ".vardict.detailed.TN.matched.vcf"
     SampleDirName = args.patientID
@@ -243,26 +226,23 @@ def ProcessArgs(args):
     if(args.verbose):
         print ("I am done processing the arguments.\n")   
     
-    return (SampleAnalysisDir, outvcf)
+    return (outvcf)
 
 		
 # assigns value for each args, makes a command and runs it on the local machine
 def main(argv=None):
 
     args = process_command_line(argv)
-    (wd, vcfoutName) = ProcessArgs(args)
+    (vcfoutName) = ProcessArgs(args)
     vcfOutPath = os.path.join(args.output_bam, vcfoutName)
     verbose = args.verbose
     day = date.today()
     today = day.isoformat()
-    start_time = time.time()
-    mem = int(args.cores)*4
-    maxmem = int(mem) + 6
+    today = today.replace("-", "")
     myPid = os.getpid()
 
 
     cmd = ""
-    cl_cmd = ""
     vardict = pie.util.programs['vardict'][args.vardict_version]
     cmd = cmd + vardict
     if (args.cores):
@@ -294,37 +274,6 @@ def main(argv=None):
 	IDs = " -N " + args.tID + "|"+ args.nID
 	cmd = cmd + IDs
     cmd = cmd + MAF
-    
-
-    if (args.qsub):
-	cl_cmd = " " + args.qsub
-	if (args.queue):
-		queue = " -q " + args.queue
-        	cl_cmd = cl_cmd + queue
-	if (args.patientID):
-		pID = " -N " + "VarDict_" + args.patientID + "_" + str(myPid)
-		pID2 = " -o " + vcfoutName
-                pID3 = " -e " + "VarDict_" + args.patientID + "_" + str(myPid) + ".stderr"
-                cl_cmd = cl_cmd + pID + pID2 + pID3
-	cl_cmd = cl_cmd + " -V -l h_vmem=6G,virtual_free=6G -pe smp"
-	cl_cmd = cl_cmd + cores
-    	cl_cmd = cl_cmd + " -wd " + wd
-	cmd = cl_cmd + " -sync y " + " -b y '" + cmd + "'"
-    
-    if (args.bsub):
-	cmd = cmd + " > " + vcfOutPath
-	cl_cmd = " " + args.bsub
-	if (args.queue):
-        	queue = " -q " + args.queue
-        	cl_cmd = cl_cmd + queue
-	if (args.patientID):
-		pID = " -J " + "VarDict_" + args.patientID + "_" + str(myPid)
-                pID2 = " -o " + "VarDict_" + args.patientID + "_" + str(myPid) + ".stdout"
-                pID3 = " -e " + "VarDict_" + args.patientID + "_" + str(myPid) + ".stderr"
-		cl_cmd = cl_cmd + pID + pID2 + pID3
-	cl_cmd = cl_cmd + " -We 24:00 -R \"rusage[mem=" + str(mem) + "]\" -M " + str(maxmem)
-	cl_cmd = cl_cmd + cores
-	cmd = cl_cmd + " -cwd " + wd + " -K " + cmd 
 
     print("\n \n  The following cmd was created: \n" + cmd)
 
