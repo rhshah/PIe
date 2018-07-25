@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 # This tool description was generated automatically by argparse2tool ver. 0.4.5
-# To generate again: $ pie_pindel.py --generate_cwl_tool
-# Help: $ pie_pindel.py --help_arg2cwl
+# To generate again: $ pie_pindel.py -go --generate_cwl_tool
+# Help: $ pie_pindel.py  --help_arg2cwl
 
 cwlVersion: v1.0
 
@@ -85,18 +85,6 @@ inputs:
     inputBinding:
       prefix: --outPrefix 
 
-  qsub:
-    type: ["null", string]
-    doc: Full Path to the qsub executables of SGE.
-    inputBinding:
-      prefix: --qsubPath 
-
-  bsub:
-    type: ["null", string]
-    doc: Full Path to the bsub executables of LSF.
-    inputBinding:
-      prefix: --bsubPath 
-
   logfile:
     type: string
 
@@ -106,4 +94,10 @@ inputs:
 
 
 outputs:
-    []
+
+  output_bam_out:
+    type: File
+
+    doc: Full Path to the output dir. [required]
+    outputBinding:
+      glob: $(inputs.output_bam.path)
