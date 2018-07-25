@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 # This tool description was generated automatically by argparse2tool ver. 0.4.5
-# To generate again: $ pie_picard_markduplicates.py --generate_cwl_tool
-# Help: $ pie_picard_markduplicates.py --help_arg2cwl
+# To generate again: $ pie_picard_markduplicates.py -go --generate_cwl_tool
+# Help: $ pie_picard_markduplicates.py  --help_arg2cwl
 
 cwlVersion: v1.0
 
@@ -124,4 +124,18 @@ inputs:
 
 
 outputs:
-    []
+
+  output_metrics_out:
+    type: File
+
+    doc: path to / name of the output TXT FILENAME, in which we store the duplication metrics [required]
+    outputBinding:
+      glob: $(inputs.output_metrics.path)
+
+
+  output_bam_out:
+    type: File
+
+    doc: path to / name of the output BAM FILENAME [required]
+    outputBinding:
+      glob: $(inputs.output_bam.path)
