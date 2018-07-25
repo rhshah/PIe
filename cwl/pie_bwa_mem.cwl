@@ -108,4 +108,3 @@ outputs:
     doc: output SAM FILENAME [required]
     outputBinding:
       glob: $(inputs.output.path)
-
