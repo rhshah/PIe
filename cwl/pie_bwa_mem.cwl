@@ -1,7 +1,7 @@
 #!/usr/bin/env cwl-runner
 # This tool description was generated automatically by argparse2tool ver. 0.4.5
-# To generate again: $ bwa_test.py --generate_cwl_tool
-# Help: $ bwa_test.py --help_arg2cwl
+# To generate again: $ pie_bwa_mem.py -go --generate_cwl_tool
+# Help: $ pie_bwa_mem.py  --help_arg2cwl
 
 cwlVersion: v1.0
 
@@ -10,7 +10,7 @@ baseCommand: ['pie_bwa_mem.py']
 
 doc: |
   pie_bwa_mem.py
-      Created by Ronak H Shah on 2018-02-14
+      Created by Ronak H Shah on 2018-02-12
       Copyright (c) 2018 Northwell Health. All rights reserved.
       Licensed under the Apache License 2.0
       http://www.apache.org/licenses/LICENSE-2.0
@@ -30,6 +30,14 @@ inputs:
     inputBinding:
       prefix: --bwa_version 
 
+  reference_sequence:
+    type:
+      type: enum
+      symbols: [u'GRCm38', u'ncbi36', u'mm9', u'GRCh37', u'GRCh38', u'hg18', u'hg19', u'mm10']
+    doc: select which genome should be used for alignment [required]
+    inputBinding:
+      prefix: --reference_sequence 
+
   fastq1:
     type: string
 
@@ -38,11 +46,16 @@ inputs:
       prefix: --fastq1 
 
   fastq2:
-    type: string
-
-    doc: path to read FASTQ file, if pair-end path to read2 file [required]
+    type: ["null", string]
+    doc: path to read FASTQ file, if pair-end path to read2 file
     inputBinding:
       prefix: --fastq2 
+
+  read_group:
+    type: ["null", string]
+    doc: information regarding read group for SAM file within quotes [example - "'@RG\tID -1\tSM -1247014_S5\tLB -1247014_S5_L001\tPL -ILLUMINA'"]
+    inputBinding:
+      prefix: --read_group 
 
   output:
     type: string
@@ -61,9 +74,16 @@ inputs:
   cores:
     type: ["null", string]
     default: 1
-    doc: number of cores to be used to run bwa [default=1]
+    doc: number of threads to be used to run bwa [default=1]
     inputBinding:
       prefix: --cores 
+
+  alignment_score:
+    type: ["null", string]
+    default: 0
+    doc: Don't output alignment with score lower than INT. This option only affects output [default=0]
+    inputBinding:
+      prefix: --alignment_score 
 
   picard_compatibility:
     type: ["null", boolean]
@@ -71,28 +91,6 @@ inputs:
     doc: Mark shorter split hits as secondary (for Picard compatibility)
     inputBinding:
       prefix: --picard_compatibility 
-
-  alignment_score:
-    type: string
-
-    default: 0
-    doc: Don't output alignment with score lower than INT. This option only affects outpur [default=0]
-    inputBinding:
-      prefix: --alignment_score 
-
-  reference_sequence:
-    type:
-      type: enum
-      symbols: [u'GRCm38', u'ncbi36', u'mm9', u'GRCh37', u'GRCh38', u'hg18', u'hg19', u'mm10']
-    doc: Select which Reference sequence file should be used for alignment.[required]
-    inputBinding:
-      prefix: --reference_sequence 
-
-  read_group:
-    type: ["null", string]
-    doc: information regarding read group for SAM file within quotes [example - "'@RG\tID -1\tSM -1247014_S5\tLB -1247014_S5_L001\tPL -ILLUMINA'"]
-    inputBinding:
-      prefix: --read_group 
 
   logfile:
     type: string
@@ -103,4 +101,11 @@ inputs:
 
 
 outputs:
-    []
+
+  output_out:
+    type: File
+
+    doc: output SAM FILENAME [required]
+    outputBinding:
+      glob: $(inputs.output.path)
+
