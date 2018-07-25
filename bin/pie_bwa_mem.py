@@ -34,7 +34,7 @@ LOG = None
 __all__ = []
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
-__date__ = '2018-02-14'
+__date__ = '2018-02-12'
 __updated__ = '2018-02-15'
 
 
@@ -72,10 +72,17 @@ USAGE
     parser.add_argument(
         "-b",
         "--bwa_version",
-        choices=pie.util.programs['bwa'].keys(),
+        choices=pie.util.programs['cutadapt'].keys(),
         required=True,
         dest="bwa_version",
         help="select which version of bwa you will like to run")
+    parser.add_argument(
+        "-ref",
+        "--reference_sequence",
+        choices=pie.util.genomes.keys(),
+        dest="reference_sequence",
+        required=True,
+        help="select which genome should be used for alignment [required]")
     parser.add_argument(
         "-f1",
         "--fastq1",
@@ -87,9 +94,14 @@ USAGE
         "-f2",
         "--fastq2",
         dest="fastq2",
-        required=True,
-        help=
-        "path to read FASTQ file, if pair-end path to read2 file [required]")
+        help="path to read FASTQ file, if pair-end path to read2 file")
+    parser.add_argument(
+        "-R",
+        "--read_group",
+        dest="read_group",
+        type=str,
+        help="information regarding read group for SAM file within quotes \
+        [example: \"\'@RG\\tID:1\\tSM:1247014_S5\\tLB:1247014_S5_L001\\tPL:ILLUMINA\'\"]")
     parser.add_argument(
         "-o",
         "--output",
@@ -103,46 +115,33 @@ USAGE
         dest="verbose",
         help="make some noise")
     parser.add_argument(
+        "-V", "--version", action="version", version=program_version_message)
+    parser.add_argument(
         "-c",
         "--cores",
         dest="cores",
         default=1,
-        help="number of cores to be used to run bwa [default=1]")
-    parser.add_argument(
-        "-V", "--version", action="version", version=program_version_message)
-    parser.add_argument(
-        "-M",
-       "--picard_compatibility",
-        dest="picard_compatibility",
-	action="store_true",
-        help="Mark shorter split hits as secondary (for Picard compatibility)")
+        help="number of threads to be used to run bwa [default=1]")
     parser.add_argument(
         "-al",
         "--alignment_score",
         dest="alignment_score",
         default=0,
-        required=True,
-        help="Don't output alignment with score lower than INT. This option only affects outpur [default=0]")
+        help=
+        "Don't output alignment with score lower than INT. This option only affects output [default=0]")
     parser.add_argument(
-        "-ref",
-        "--reference_sequence",
-        dest="reference_sequence",
-        choices=pie.util.genomes.keys(),
-        required=True,
-	help="Select which Reference sequence file should be used for alignment.[required]")
-    parser.add_argument(
-	"-R",
-	"--read_group",
-	dest="read_group",
-	type=str,
-	help="information regarding read group for SAM file within quotes \
-        [example: \"\'@RG\\tID:1\\tSM:1247014_S5\\tLB:1247014_S5_L001\\tPL:ILLUMINA\'\"]")
+        "-M",
+        "--picard_compatibility",
+        dest="picard_compatibility",
+        action="store_true",
+        help="Mark shorter split hits as secondary (for Picard compatibility)")
     parser.add_argument(
         "-L",
         "--log",
         dest="logfile",
         required=True,
         help="write debug log to FILENAME [required]")
+   
     args = parser.parse_args()
 
     # set up logging
@@ -155,14 +154,14 @@ USAGE
 def main(argv=None):
     args = process_command_line(argv)
     cmd = ""
-    bwa = pie.util.programs['bwa'][args.bwa_version]
+    bwa = pie.util.programs['cutadapt'][args.bwa_version]
     cmd = cmd + bwa + " mem"
     if(args.cores):
         cores = " -t " + str(args.cores)
         cmd = cmd + cores
-   # if(args.alignment_score):
-    #    alignment_score = " -T " + str(args.alignment_score)
-     #   cmd = cmd + alignment_score
+    if(args.alignment_score):
+        alignment_score = " -T " + str(args.alignment_score)
+        cmd = cmd + alignment_score
     if(args.read_group):
         read_group = " -R " + args.read_group
         cmd = cmd + read_group
@@ -190,22 +189,19 @@ def main(argv=None):
         LOG.info("process id:%s,date:%s", myPid, today)
 
     LOG.info("command being run \n %s", cmd)
-
     # setup the command to run
-
-    proc = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
-    stdout, stderr = proc.communicate()
-    if (stderr):
-        LOG.critical(stderr)
-    if (stdout):
-        LOG.info(stdout)
+    proc = Popen(cmd,shell=True,stdout=PIPE,stderr=PIPE)
+    stdout,stderr = proc.communicate()
+    if(stdout):
+        LOG.critical(stdout) # this is excpetion for bwa as stderr comes to stdout
+    if(stderr):
+        LOG.info(stderr) # this is  excpetion for bwa as stderr comes to stdout
     retcode = proc.returncode
     if (retcode >= 0):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
-            LOG.info("finished running bwa,please find output in, %s",
-                     args.output)
+            LOG.info("finished running bwa,please find output in %s", args.output)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):
