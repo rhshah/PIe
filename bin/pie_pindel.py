@@ -10,7 +10,7 @@ import sys
 import time
 import os.path
 import stat
-from subprocess import Popen,PIPE
+from subprocess import Popen
 import shlex
 import shutil
 from datetime import date, timedelta
@@ -156,12 +156,12 @@ def ProcessArgs(args):
                 data = line.rstrip('\n').split('\t')
                 tumorBam = os.path.basename(data[0]).rstrip('.bam')
                 break
-    outvcf = tumorBam + ".pindel.detailed.TN.matched.vcf"
+    outvcf = tumorBam + "file.pindel.detailed.TN.matched.vcf"   #would not produce .vcf file while using config .txt files instead of BAM files due to beginning "." . added "file" to fix.
     SampleDirName = args.patientID
     staticDir = "PindelAnalysis"
     AnalysisDir = os.path.join(args.output_bam, staticDir)
     SampleAnalysisDir = os.path.join(AnalysisDir, SampleDirName)
-    #pindeltag=0
+    pindeltag=0
     try:
         os.mkdir(AnalysisDir)
     except OSError:
@@ -170,10 +170,10 @@ def ProcessArgs(args):
     if os.path.isdir(SampleAnalysisDir):
             if(args.verbose):
                 print "Dir:", SampleAnalysisDir, " exists and we wont run the analysis\n"
-            #pindeltag = 0
+            pindeltag = 0
     else:
         os.makedirs(SampleAnalysisDir)
-        #pindeltag = 1
+        pindeltag = 1
     if(args.verbose):
         print "I am done processing the arguments.\n"   
     
@@ -187,10 +187,10 @@ def main(argv=None):
     today = day.isoformat()
     today = today.replace("-", "")
     myPid = os.getpid()
-    pindel = os.path.join(args.PINDEL, "pindel")
     pindel2vcf = os.path.join(args.PINDEL, "pindel2vcf")
     (vcfoutName) = ProcessArgs(args)
     vcfOutPath = os.path.join(args.output_bam, vcfoutName)
+    print(vcfOutPath)
     p2v_cmd = ''
  
     # myPid = str(myPid)
@@ -219,9 +219,10 @@ def main(argv=None):
 
     print "Cluster_CMD==>", cmd , "\n"
     cl_args = shlex.split(cmd)
-    proc = Popen(cl_args, shell=True, stdout=PIPE, stderr=PIPE)
+    proc = Popen(cl_args)
     proc.wait()
     retcode = proc.returncode
+
     if(retcode >= 0):
         if(args.verbose):
             print "I have finished running Pindel for ", args.patientID, " using SGE/LSF"
@@ -235,12 +236,12 @@ def main(argv=None):
 	    if (args.reference_sequence):
 		ref= " --reference " + args.reference_sequence
 		p2v_cmd = p2v_cmd + ref
-	    p2v_cmd = p2v_cmd +  " --reference_date " + today + " --vcf " + vcfOutPath + " -b true --gatk_compatible "         
+	    p2v_cmd = p2v_cmd +  " --reference_name"+ " chr"+args.chr+ " --reference_date " + today + " --vcf " + vcfOutPath + " -b true --gatk_compatible " # would not run without specifying reference_name        
            
             print ("P2V cmd: " + p2v_cmd)
-	    print ("\n \n The followng cmd has been run: " + cmd + p2v_cmd)
+
             p2v_args = shlex.split(p2v_cmd)
-            proc = Popen(p2v_args, shell=True, stdout=PIPE, stderr=PIPE)
+            proc = Popen(p2v_args)
             proc.wait()
             retcode = proc.returncode
         if(retcode >= 0):
