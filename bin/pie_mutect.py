@@ -36,45 +36,31 @@ __version__ = '.'.join(__version_info__)
 __date__ = '2018-02-12'
 __updated__ = '2018-04-15'
 
-def picard_std_args(parser):
+def gatk_std_args(parser):
+    
     parser.add_argument(
-        "-tmp",
-        "--tmp_dir",
-        dest="tmp_dir",
-        default="/scratch/",
-        help="path to the temporary directory")
+	"-cp",
+	"--compression_level",
+	dest="compression_level",
+	default=5,
+	help="Compression level to use for writing BAM files (0 - 9, higher is more compressed) )[default=5]"
+	)
     parser.add_argument(
-        "-s",
-        "--validation_stringency",
-        dest="validation_stringency",
-        default="SILENT",
-        help=
-        "Validation stringency for all SAM files read by this program. Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.[default=SILENT]"
-    )
-    parser.add_argument(
-        "-c",
-        "--compression_level",
-        dest="compression_level",
-        default="5",
-        help=
-        "Compression level for all compressed files created (e.g. BAM and GELI).[default=5]"
-    )
-    parser.add_argument(
-        "-ci",
-        "--create_index",
-        dest="create_index",
-        default="true",
-        help=
-        "Whether to create a BAM index when writing a coordinate-sorted BAM file.[default=true]"
-    )
+	"-T",
+	"--analysis_type",
+	default="MuTect",
+	dest="analysis_type",
+	required=True,
+	help="Name of the tool to run [default: MuTect] [required]"
+	)
     parser.add_argument(
         "-cm",
         "--create_md5_file",
         dest="create_md5_file",
-        default="false",
+        default=False,
         help=
         "Whether to create an MD5 digest for any BAM or FASTQ files created.[default=false]"
-    )
+    	)
     parser.add_argument(
         "-ref",
         "--reference_sequence",
@@ -82,6 +68,13 @@ def picard_std_args(parser):
         choices=pie.util.genomes.keys(),
         required=True,
         help="Reference sequence file.[required]")
+    parser.add_argument(
+	"-c",
+	"--cores",
+	dest="cores",
+	default=1,
+	help="number of cores to be used to run vardict [default=1]")	
+
     return (parser)
 
 # process the given arguments from the command line
@@ -115,35 +108,34 @@ USAGE
     parser = ArgumentParser(
         description=program_license,
         formatter_class=RawDescriptionHelpFormatter)
-    parser = picard_std_args(parser)
+    parser = gatk_std_args(parser)
     # define options here:
+
     parser.add_argument(
-        "-p",
-        "--picard_version",
-        choices=pie.util.programs['picard'].keys(),
+        "-g",
+        "--gatk_version",
+        choices=pie.util.programs['gatk'].keys(),
         required=True,
-        dest="picard_version",
-        help="select which version of picard you will like to run")
+        dest="gatk_version",
+        help="select which version of gatk you will like to run [required]")
     parser.add_argument(
-        "-i",
-        "--input",
-        dest="input_bam",
+        "-in",
+        "--input_bam_n",
+        dest="input_bam_n",
         required=True,
-        help="path / name of BAM FILENAME [required]")
+        help="path / name of BAM FILENAME for normal [required]")
     parser.add_argument(
-        "-m",
-        "--metrics",
-        dest="output_metrics",
+        "-it",
+        "--input_bam_t",
+        dest="input_bam_t",
         required=True,
-        help=
-        "path to / name of the output TXT FILENAME, in which we store the duplication metrics [required]"
-    )
+        help="path / name of BAM FILENAME for tumor [required]")
     parser.add_argument(
         "-o",
-        "--output",
+        "--output_bam",
         dest="output_bam",
         required=True,
-        help="path to / name of the output BAM FILENAME  [required]")
+        help="path to / name of the output BAM FILENAME for tumor mut sites [required]")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -153,28 +145,51 @@ USAGE
     parser.add_argument(
         "-V", "--version", action="version", version=program_version_message)
     parser.add_argument(
-        "-aso",
-        "--assume_sort_order",
-        dest="assume_sort_order",
-        default="coordinate",
-        type=str,
-        help=
-        "f not null, assume that the input file has this order even if the header says otherwise. Default value: null. Possible values: {unsorted, queryname, coordinate, duplicate, unknown} [default=coordinate]"
-    )
+        "-bq",
+        "--quality_base",
+        dest="quality_base",
+        default=33,
+        help= "Minimum base quality required to consider a base for calling [default=33]"
+    	)
     parser.add_argument(
-        "-odpd",
-        "--optical_duplicate_pixel_distance",
-        dest="optical_duplicate_pixel_distance",
-        default=100,
-        help=
-        "The maximum offset between two duplicate clusters in order to consider them optical duplicates. The default is appropriate for unpatterned versions of the Illumina platform. For the patterned flowcell models, 2500 is moreappropriate. For other platforms and models, users should experiment to find what works best.[default=100]"
-    )
+	"-snp",
+	"--dbsnp",
+	dest="dbsnp",
+	required=True,
+	help="DBSNP .vcf to use [required]" 
+	)
+    parser.add_argument(
+	"-int",
+	"--intervals",
+	dest="intervals",
+	required=True,
+	help="One or more genomic intervals over which to opertate. Can be cmd line or file (including rod). [required]")
+    parser.add_argument(
+	"-cf",
+	"--coverage_file",
+	dest="coverage_file",
+	required=True,
+	help="full path to coverage .wig.txt file [required]")
+    parser.add_argument(
+	"-vcf",
+	"--vcf_output",
+	dest="vcf_output",
+	help="File/path to output .vcf file if desired")
+    parser.add_argument(
+	"-C",
+	"--cosmic",
+	dest="cosmic",
+	required=True,
+	help="COSMIC sites to use in .vcf format [required]"
+	)
     parser.add_argument(
         "-L",
         "--log",
         dest="logfile",
         required=True,
         help="write debug log to FILENAME [required]")
+    
+
     args = parser.parse_args()
 
     # set up logging
@@ -188,41 +203,50 @@ def main(argv=None):
 
     args = process_command_line(argv)
     cmd = ""
-    picard = pie.util.programs['picard'][args.picard_version]
-    cmd = cmd + picard + " MarkDuplicates"
-    if (args.input_bam):
-        input_bam = " I=" + str(args.input_bam)
-        cmd = cmd + input_bam
-    if (args.output_metrics):
-        output_metrics = " M=" + str(args.output_metrics)
-        cmd = cmd + output_metrics
+    gatk = pie.util.programs['gatk'][args.gatk_version]
+    cmd = cmd + gatk
+    if (args.analysis_type):
+	analysis_type = " --analysis_type " + args.analysis_type
+	cmd = cmd + analysis_type
+    if (args.input_bam_t):
+        input_bam_t = " --input_file:tumor " + args.input_bam_t
+        cmd = cmd + input_bam_t
+    if (args.input_bam_n):
+	input_bam_n = " --input_file:normal " + args.input_bam_n
+	cmd = cmd + input_bam_n
     if (args.output_bam):
-        output_bam = " O=" + args.output_bam
+        output_bam = " --out " + args.output_bam
         cmd = cmd + output_bam
     if (args.reference_sequence):
-        reference_sequence = " R=" + pie.util.genomes[args.reference_sequence]['bwa_fasta']
+        reference_sequence = " --reference_sequence " + args.reference_sequence
         cmd = cmd + reference_sequence
-    if (args.optical_duplicate_pixel_distance):
-        optical_duplicate_pixel_distance = " OPTICAL_DUPLICATE_PIXEL_DISTANCE=" + args.optical_duplicate_pixel_distance
-        cmd = cmd + optical_duplicate_pixel_distance
-    if (args.assume_sort_order):
-        assume_sort_order = " ASSUME_SORT_ORDER=" + args.assume_sort_order
-        cmd = cmd + assume_sort_order
-    if (args.tmp_dir):
-        tmp_dir = " TMP_DIR=" + args.tmp_dir
-        cmd = cmd + tmp_dir
-    if (args.create_index):
-        create_index = " CREATE_INDEX=" + args.create_index
-        cmd = cmd + create_index
-    if (args.validation_stringency):
-        validation_stringency = " VALIDATION_STRINGENCY=" + args.validation_stringency
-        cmd = cmd + validation_stringency
+    if (args.cores):
+	cores = " -nt " + str(args.cores)
+	cmd = cmd + cores
     if (args.create_md5_file):
-        create_md5_file = " CREATE_MD5_FILE=" + args.create_md5_file
+        create_md5_file = " --generate_md5 " + args.create_md5_file
         cmd = cmd + create_md5_file
     if (args.compression_level):
-        compression_level = " COMPRESSION_LEVEL=" + args.compression_level
+        compression_level = " -compress " + str(args.compression_level)
         cmd = cmd + compression_level
+    if(args.quality_base):
+	quality_base = " --quality_base " + str(args.quality_base)
+        cmd = cmd + quality_base
+    if(args.cosmic):
+	cosmic = " --cosmic " + args.cosmic
+	cmd = cmd + cosmic
+    if(args.dbsnp):
+	dbsnp = " --dbsnp " + args.dbsnp
+	cmd = cmd + dbsnp
+    if (args.coverage_file):
+        coverage_file = " --coverage_file " + args.coverage_file
+        cmd = cmd + coverage_file
+    if (args.intervals):
+        intervals = " --intervals " + args.intervals
+        cmd = cmd + intervals
+    if (args.vcf_output):
+	vcf_output = " -vcf " + args.vcf_output
+	cmd = cmd + vcf_output
 
     verbose = args.verbose
     myPid = os.getpid()
@@ -231,7 +255,7 @@ def main(argv=None):
     start_time = time.time()
     if (verbose):
         LOG.info(
-            "all the input parameters look good for running picard markduplicates"
+            "all the input parameters look good for running GATK mutect"
         )
         LOG.info("process id:%s,date:%s", myPid, today)
 
@@ -249,13 +273,13 @@ def main(argv=None):
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
             LOG.info(
-                "finished running picard for markduplicates,please find output in %s",
-                output_bam)
+                "finished running GATK for mutect,please find output in %s",
+                args.output_bam)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):
             LOG.critical(
-                "either picard for markduplicates is still running or its errored out with returncode:%d",
+                "either GATK for mutect is still running or its errored out with returncode:%d",
                 retcode)
         return 1
 

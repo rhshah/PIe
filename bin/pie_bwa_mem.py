@@ -72,15 +72,15 @@ USAGE
     parser.add_argument(
         "-b",
         "--bwa_version",
-        choices=pie.util.programs['bwa'].keys(),
+        choices=pie.util.programs['cutadapt'].keys(),
         required=True,
         dest="bwa_version",
         help="select which version of bwa you will like to run")
     parser.add_argument(
-        "-g",
-        "--genome",
+        "-ref",
+        "--reference_sequence",
         choices=pie.util.genomes.keys(),
-        dest="genome",
+        dest="reference_sequence",
         required=True,
         help="select which genome should be used for alignment [required]")
     parser.add_argument(
@@ -117,19 +117,18 @@ USAGE
     parser.add_argument(
         "-V", "--version", action="version", version=program_version_message)
     parser.add_argument(
-        "-t",
-        "--threads",
-        dest="threads",
+        "-c",
+        "--cores",
+        dest="cores",
         default=1,
         help="number of threads to be used to run bwa [default=1]")
     parser.add_argument(
-        "-T",
+        "-al",
         "--alignment_score",
         dest="alignment_score",
         default=0,
         help=
-        "Don’t output alignment with score lower than INT. This option only affects output [default=0]"
-    )
+        "Don't output alignment with score lower than INT. This option only affects output [default=0]")
     parser.add_argument(
         "-M",
         "--picard_compatibility",
@@ -142,6 +141,7 @@ USAGE
         dest="logfile",
         required=True,
         help="write debug log to FILENAME [required]")
+   
     args = parser.parse_args()
 
     # set up logging
@@ -154,11 +154,11 @@ USAGE
 def main(argv=None):
     args = process_command_line(argv)
     cmd = ""
-    bwa = pie.util.programs['bwa'][args.bwa_version]
+    bwa = pie.util.programs['cutadapt'][args.bwa_version]
     cmd = cmd + bwa + " mem"
-    if(args.threads):
-        threads = " -t " + str(args.threads)
-        cmd = cmd + threads
+    if(args.cores):
+        cores = " -t " + str(args.cores)
+        cmd = cmd + cores
     if(args.alignment_score):
         alignment_score = " -T " + str(args.alignment_score)
         cmd = cmd + alignment_score
@@ -171,7 +171,7 @@ def main(argv=None):
     if(args.output):
         output = " -o " + args.output
         cmd = cmd + output
-    fasta = pie.util.genomes[args.genome]['bwa_fasta']
+    fasta = pie.util.genomes[args.reference_sequence]['bwa_fasta']
     fastq1 = args.fastq1
     cmd = cmd + " " + fasta + " " + fastq1
     
@@ -201,7 +201,7 @@ def main(argv=None):
         end_time = time.time()
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
-            LOG.info("finished running bwa,please find output in %s", output)
+            LOG.info("finished running bwa,please find output in %s", args.output)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):

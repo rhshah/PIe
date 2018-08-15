@@ -290,7 +290,7 @@ def main(argv=None):
         totaltime = str(timedelta(seconds=end_time - start_time))
         if (verbose):
             LOG.info("finished running cutadapt,please find output in %s,%s",
-                     ofastq1, ofastq2)
+                     args.out_fastq1, args.out_fastq2)
             LOG.info("duration: %s", totaltime)
     else:
         if (verbose):

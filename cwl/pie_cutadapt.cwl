@@ -1,9 +1,9 @@
 #!/usr/bin/env cwl-runner
-# This tool description was generated automatically by argparse2tool ver. 0.4.3-2
-# To generate again: $ pie_cutadapt.py -go --generate_cwl_tool
-# Help: $ pie_cutadapt.py  --help_arg2cwl
+# This tool description was generated automatically by argparse2tool ver. 0.4.5
+# To generate again: $ pie_cutadapt.py --generate_cwl_tool
+# Help: $ pie_cutadapt.py --help_arg2cwl
 
-cwlVersion: "cwl:v1.0"
+cwlVersion: v1.0
 
 class: CommandLineTool
 baseCommand: ['pie_cutadapt.py']
@@ -31,41 +31,41 @@ inputs:
       prefix: --cutadapt_version 
 
   file_format:
-    type: ["null", str]
+    type: ["null", string]
     doc: Input file format; can be either 'fasta', 'fastq' or 'sra-fastq'. Ignored when reading csfasta/qual files. [default=auto-detect from file name extension.]
     inputBinding:
       prefix: --file_format 
 
   overlap_minimum_length:
-    type: ["null", str]
+    type: ["null", string]
     default: 3
     doc: Require MINLENGTH overlap between read and adapter for an adapter to be found. [default=3]
     inputBinding:
       prefix: --overlap_minimum_length 
 
   fastq1:
-    type: str
+    type: string
 
     doc: path to read FASTQ file, if pair-end path to read1 file [required]
     inputBinding:
       prefix: --fastq1 
 
   fastq2:
-    type: str
+    type: string
 
     doc: path to read FASTQ file, if pair-end path to read2 file [required]
     inputBinding:
       prefix: --fastq2 
 
   out_fastq1:
-    type: str
+    type: string
 
     doc: output FASTQ for read1 [required]
     inputBinding:
       prefix: --out_fastq1 
 
   out_fastq2:
-    type: str
+    type: string
 
     doc: output FASTQ for read2 [required]
     inputBinding:
@@ -79,28 +79,28 @@ inputs:
       prefix: --verbose 
 
   cores:
-    type: ["null", str]
+    type: ["null", string]
     default: 1
     doc: number of cores to be used to run cutadapt [default=1]
     inputBinding:
       prefix: --cores 
 
   minimum_length:
-    type: ["null", str]
+    type: ["null", string]
     default: 20
     doc: Discard reads shorter than LENGTH. [default=20]
     inputBinding:
       prefix: --minimum_length 
 
   quality_base:
-    type: ["null", str]
+    type: ["null", string]
     default: 33
     doc: Assume that quality values in FASTQ are encoded as ascii(quality + QUALITY_BASE). This needs to be set to 64 for some old Illumina FASTQ files. [default=33]
     inputBinding:
       prefix: --quality_base 
 
   error_rate:
-    type: ["null", str]
+    type: ["null", string]
     default: 0.1
     doc: Maximum allowed error rate (no. of errors divided by Tthe length of the matching region). [default=0.1]
     inputBinding:
@@ -153,7 +153,7 @@ inputs:
       prefix: --pair_filter 
 
   logfile:
-    type: str
+    type: string
 
     doc: write debug log to FILENAME [required]
     inputBinding:
