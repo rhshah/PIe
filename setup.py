@@ -89,12 +89,10 @@ setup(
         'coloredlogs'
     ],
     scripts=[
-        'bin/pie_bwa_mem.py'
-        'bin/pie_cutadapt.py'
-        'bin/pie_delly.py'
-        'bin/pie_mutect.py'
-        'bin/pie_picard_markduplicates.py'
-        'bin/pie_pindel.py'
+        'bin/pie_bwa_mem.py',
+        'bin/pie_cutadapt.py',
+        'bin/pie_mutect.py',
+        'bin/pie_picard_markduplicates.py',
         'bin/pie_vardict.py'
     ],
     zip_safe=False,
