@@ -8,6 +8,12 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_bwa_mem.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
 doc: |
   pie_bwa_mem.py
       Created by Ronak H Shah on 2018-02-12
@@ -25,7 +31,8 @@ inputs:
   bwa_version:
     type:
       type: enum
-      symbols: [u'default']
+      symbols: ['default']
+    default: 'default'
     doc: select which version of bwa you will like to run
     inputBinding:
       prefix: --bwa_version 
@@ -33,7 +40,7 @@ inputs:
   reference_sequence:
     type:
       type: enum
-      symbols: [u'GRCm38', u'ncbi36', u'mm9', u'GRCh37', u'GRCh38', u'hg18', u'hg19', u'mm10']
+      symbols: ['GRCm38', 'ncbi36', 'mm9', 'GRCh37', 'GRCh38', 'hg18', 'hg19', 'mm10']
     doc: select which genome should be used for alignment [required]
     inputBinding:
       prefix: --reference_sequence 
@@ -73,14 +80,14 @@ inputs:
 
   cores:
     type: ["null", string]
-    default: 1
+    default: "1"
     doc: number of threads to be used to run bwa [default=1]
     inputBinding:
       prefix: --cores 
 
   alignment_score:
     type: ["null", string]
-    default: 0
+    default: "0"
     doc: Don't output alignment with score lower than INT. This option only affects output [default=0]
     inputBinding:
       prefix: --alignment_score 
@@ -102,9 +109,9 @@ inputs:
 
 outputs:
 
-  output_out:
+  output_sam:
     type: File
 
     doc: output SAM FILENAME [required]
     outputBinding:
-      glob: $(inputs.output.path)
+      glob: "*.sam"

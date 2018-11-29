@@ -72,8 +72,9 @@ USAGE
     parser.add_argument(
         "-b",
         "--bwa_version",
-        choices=pie.util.programs['cutadapt'].keys(),
-        required=True,
+        choices=pie.util.programs['bwa'].keys(),
+        required=False,
+        default="default",
         dest="bwa_version",
         help="select which version of bwa you will like to run")
     parser.add_argument(
@@ -141,7 +142,7 @@ USAGE
         dest="logfile",
         required=True,
         help="write debug log to FILENAME [required]")
-   
+
     args = parser.parse_args()
 
     # set up logging
@@ -154,7 +155,7 @@ USAGE
 def main(argv=None):
     args = process_command_line(argv)
     cmd = ""
-    bwa = pie.util.programs['cutadapt'][args.bwa_version]
+    bwa = pie.util.programs['bwa'][args.bwa_version]
     cmd = cmd + bwa + " mem"
     if(args.cores):
         cores = " -t " + str(args.cores)
@@ -171,10 +172,10 @@ def main(argv=None):
     if(args.output):
         output = " -o " + args.output
         cmd = cmd + output
-    fasta = pie.util.genomes[args.reference_sequence]['bwa_fasta']
+    fasta = pie.util.genomes[args.reference_sequence]['fasta']
     fastq1 = args.fastq1
     cmd = cmd + " " + fasta + " " + fastq1
-    
+
     if(args.fastq2):
         fastq2 = args.fastq2
         cmd = cmd + " " + fastq2
