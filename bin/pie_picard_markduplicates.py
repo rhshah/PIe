@@ -121,7 +121,8 @@ USAGE
         "-p",
         "--picard_version",
         choices=pie.util.programs['picard'].keys(),
-        required=True,
+        required=False,
+        defualt="default",
         dest="picard_version",
         help="select which version of picard you will like to run")
     parser.add_argument(

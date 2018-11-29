@@ -115,7 +115,8 @@ USAGE
         "-g",
         "--gatk_version",
         choices=pie.util.programs['gatk'].keys(),
-        required=True,
+        required=False,
+        default="default",
         dest="gatk_version",
         help="select which version of gatk you will like to run [required]")
     parser.add_argument(

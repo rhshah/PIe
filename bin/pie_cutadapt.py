@@ -73,7 +73,8 @@ USAGE
         "-cv",
         "--cutadapt_version",
         choices=pie.util.programs['cutadapt'].keys(),
-        required=True,
+        required=False,
+        default="default",
         dest="cutadapt_version",
         help="select which version of cutadapt you will like to run")
     parser.add_argument(

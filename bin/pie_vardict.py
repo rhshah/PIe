@@ -77,7 +77,8 @@ USAGE
         "-vv",
         "--vardict_version",
         choices=pie.util.programs['vardict'].keys(),
-        required=True,
+        required=False,
+        default="default",
         dest="vardict_version",
         help="select which version of vardict you will like to run [required]")
     parser.add_argument(
