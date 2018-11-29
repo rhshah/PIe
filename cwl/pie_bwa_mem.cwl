@@ -114,4 +114,9 @@ outputs:
 
     doc: output SAM FILENAME [required]
     outputBinding:
-      glob: "*.sam"
+      glob: |
+        ${
+          if (inputs.output)
+            return inputs.output;
+          return null;
+        }

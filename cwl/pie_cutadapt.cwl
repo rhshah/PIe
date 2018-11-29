@@ -8,6 +8,12 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_cutadapt.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
 doc: |
   pie_cutadapt.py
       Created by Ronak H Shah on 2018-02-14
@@ -161,4 +167,25 @@ inputs:
 
 
 outputs:
-    []
+   output_fastq1:
+    type: File
+
+    doc: output FASTQ for read1 
+    outputBinding:
+      glob: |
+        ${
+          if (inputs.out_fastq1)
+            return inputs.out_fastq1;
+          return null;
+        }
+  output_fastq2:
+    type: File
+
+    doc: output FASTQ for read2 
+    outputBinding:
+      glob: |
+        ${
+          if (inputs.out_fastq2)
+            return inputs.out_fastq2;
+          return null;
+        }

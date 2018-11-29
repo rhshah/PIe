@@ -8,6 +8,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_pindel.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
+
 doc: |
   Run Pindel for Long Indels & MNPS (32bp-350bp)
 
@@ -95,9 +102,9 @@ inputs:
 
 outputs:
 
-  output_bam_out:
+  output_files:
     type: File
 
-    doc: Full Path to the output dir. [required]
+    doc: Pindel output files
     outputBinding:
-      glob: $(inputs.output_bam.path)
+      glob: $(inputs.outprefix)

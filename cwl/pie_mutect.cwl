@@ -8,6 +8,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_mutect.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
+
 doc: |
   pie_mutect.py
       Created by Ronak H Shah on 2018-02-12
@@ -151,7 +158,12 @@ outputs:
 
     doc: path to / name of the output BAM FILENAME for tumor mut sites [required]
     outputBinding:
-      glob: $(inputs.output_bam.path)
+      glob: |
+        ${
+          if (inputs.output_bam)
+            return inputs.output_bam;
+          return null;
+        }
 
 
   vcf_output_out:
@@ -159,4 +171,9 @@ outputs:
 
     doc: File/path to output .vcf file if desired
     outputBinding:
-      glob: $(inputs.vcf_output.path)
+      glob: |
+      ${
+          if (inputs.vcf_output)
+            return inputs.vcf_output;
+          return null;
+        }

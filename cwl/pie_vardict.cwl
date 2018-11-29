@@ -8,6 +8,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_vardict.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
+
 doc: |
   pie_vardict.py
       Created by Ronak H Shah on 2018-02-12

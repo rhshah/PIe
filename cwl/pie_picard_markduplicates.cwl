@@ -8,6 +8,12 @@ cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: ['pie_picard_markduplicates.py']
 
+requirements:
+    InlineJavascriptRequirement: {}
+    ResourceRequirement:
+        ramMin: 10240
+        coresMin: 2
+
 doc: |
   pie_picard_markduplicates.py
       Created by Ronak H Shah on 2018-02-12
@@ -128,14 +134,24 @@ outputs:
   output_metrics_out:
     type: File
 
-    doc: path to / name of the output TXT FILENAME, in which we store the duplication metrics [required]
+    doc: path to / name of the output TXT FILENAME, in which we store the duplication metrics
     outputBinding:
-      glob: $(inputs.output_metrics.path)
+      glob: |
+      ${
+          if (inputs.output_metrics)
+            return inputs.output_metrics;
+          return null;
+        }
 
 
   output_bam_out:
     type: File
-
-    doc: path to / name of the output BAM FILENAME [required]
+    secondaryFiles: .bai
+    doc: path to / name of the output BAM FILENAME
     outputBinding:
-      glob: $(inputs.output_bam.path)
+      glob: |
+      ${
+          if (inputs.output_bam)
+            return inputs.output_bam.basename;
+          return null;
+        }

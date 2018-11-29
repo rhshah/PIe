@@ -92,8 +92,7 @@ setup(
         'bin/pie_bwa_mem.py',
         'bin/pie_cutadapt.py',
         'bin/pie_mutect.py',
-        'bin/pie_picard_markduplicates.py',
-        'bin/pie_vardict.py'
+        'bin/pie_picard_markduplicates.py'
     ],
     zip_safe=False,
     classifiers=(
