@@ -30,7 +30,7 @@ inputs:
   
   cutadapt_version:
     type:
-      type: [enum,string]
+      type: enum
       symbols: ['default','1.18']
     default: 'default'
     doc: select which version of cutadapt you will like to run
