@@ -263,7 +263,7 @@ def main(argv=None):
         quality_cutoff = " -q " + str(args.quality_cutoff.replace('\"',''))
         cmd = cmd + quality_cutoff
     if (args.quality_base):
-        quality_base = " --quality_base=" + str(args.quality_base)
+        quality_base = " --quality-base=" + str(args.quality_base)
         cmd = cmd + quality_base
     if (args.cores):
         cores = " -j " + str(args.cores)
