@@ -196,7 +196,7 @@ outputs:
             return inputs.out_fastq2;
           return null;
         }
- log:
+  log:
     type: File
 
     doc: write debug log to FILENAME
