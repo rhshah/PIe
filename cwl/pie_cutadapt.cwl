@@ -87,28 +87,28 @@ inputs:
 
   cores:
     type: ["null", string]
-    default: 1
+    default: "1"
     doc: number of cores to be used to run cutadapt [default=1]
     inputBinding:
       prefix: --cores 
 
   minimum_length:
     type: ["null", string]
-    default: 20
+    default: "20"
     doc: Discard reads shorter than LENGTH. [default=20]
     inputBinding:
       prefix: --minimum_length 
 
   quality_cutoff:
     type: ["null", string]
-    default: 30,30
+    default: "30,30"
     doc: Trim low-quality bases from 5' and/or 3' ends of each read before adapter removal. Applied to both reads if data is paired. If one value is given, only the 3' end is trimmed. If two comma-separated cutoffs are given, the 5' end is trimmed with the first cutoff, the 3' end with the second.[default=30,30]
     inputBinding:
       prefix: --quality_cutoff
 
   quality_base:
     type: ["null", string]
-    default: 33
+    default: "33"
     doc: Assume that quality values in FASTQ are encoded as ascii(quality + QUALITY_BASE). This needs to be set to 64 for some old Illumina FASTQ files. [default=33]
     inputBinding:
       prefix: --quality_base 
