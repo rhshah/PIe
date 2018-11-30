@@ -45,7 +45,7 @@ inputs:
 
   overlap_minimum_length:
     type: ["null", string]
-    default: 3
+    default: "3"
     doc: Require MINLENGTH overlap between read and adapter for an adapter to be found. [default=3]
     inputBinding:
       prefix: --overlap_minimum_length 
@@ -115,7 +115,7 @@ inputs:
 
   error_rate:
     type: ["null", string]
-    default: 0.1
+    default: "0.1"
     doc: Maximum allowed error rate (no. of errors divided by Tthe length of the matching region). [default=0.1]
     inputBinding:
       prefix: --error_rate 
