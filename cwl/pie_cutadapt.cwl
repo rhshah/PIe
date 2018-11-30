@@ -31,7 +31,7 @@ inputs:
   cutadapt_version:
     type:
       type: enum
-      symbols: [u'default']
+      symbols: ['default']
     doc: select which version of cutadapt you will like to run
     inputBinding:
       prefix: --cutadapt_version 
@@ -97,6 +97,15 @@ inputs:
     doc: Discard reads shorter than LENGTH. [default=20]
     inputBinding:
       prefix: --minimum_length 
+
+   quality_cutoff:
+    type: ["null", string]
+    default: 30,30
+    doc: Trim low-quality bases from 5' and/or 3' ends of each read before adapter removal. Applied to both reads if \
+        data is paired. If one value is given, only the 3' end is trimmed. If two comma-separated cutoffs are given, \
+        the 5' end is trimmed with the first cutoff, the 3' end with the second.[default=30,30]
+    inputBinding:
+      prefix: --quality_cutoff
 
   quality_base:
     type: ["null", string]
@@ -167,7 +176,7 @@ inputs:
 
 
 outputs:
-   output_fastq1:
+  fastq1:
     type: File
 
     doc: output FASTQ for read1 
@@ -178,7 +187,7 @@ outputs:
             return inputs.out_fastq1;
           return null;
         }
-  output_fastq2:
+  fastq2:
     type: File
 
     doc: output FASTQ for read2 
@@ -187,5 +196,16 @@ outputs:
         ${
           if (inputs.out_fastq2)
             return inputs.out_fastq2;
+          return null;
+        }
+ log:
+    type: File
+
+    doc: write debug log to FILENAME
+    outputBinding:
+      glob: |
+        ${
+          if (inputs.logfile)
+            return inputs.logfile;
           return null;
         }

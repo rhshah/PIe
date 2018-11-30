@@ -109,14 +109,26 @@ inputs:
 
 outputs:
 
-  output_sam:
+  sam:
     type: File
 
-    doc: output SAM FILENAME [required]
+    doc: output SAM FILENAME
     outputBinding:
       glob: |
         ${
           if (inputs.output)
             return inputs.output;
+          return null;
+        }
+
+ log:
+    type: File
+
+    doc: write debug log to FILENAME
+    outputBinding:
+      glob: |
+        ${
+          if (inputs.logfile)
+            return inputs.logfile;
           return null;
         }

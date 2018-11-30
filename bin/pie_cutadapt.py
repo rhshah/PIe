@@ -138,6 +138,17 @@ USAGE
         default=20,
         help="Discard reads shorter than LENGTH. [default=20]")
     parser.add_argument(
+        "-qc",
+        "--quality_cutoff",
+        dest="quality_cutoff",
+        default="30,30",
+        type=str,
+        help=
+        "Trim low-quality bases from 5' and/or 3' ends of each read before adapter removal. Applied to both reads if \
+        data is paired. If one value is given, only the 3' end is trimmed. If two comma-separated cutoffs are given, \
+        the 5' end is trimmed with the first cutoff, the 3' end with the second."
+    )
+    parser.add_argument(
         "-qb",
         "--quality_base",
         dest="quality_base",
@@ -248,8 +259,11 @@ def main(argv=None):
     if (args.overlap_minimum_length):
         overlap_minimum_length = " -O " + str(args.overlap_minimum_length)
         cmd = cmd + overlap_minimum_length
+    if (args.quality_cutoff):
+        quality_cutoff = " -q " + str(args.quality_cutoff.replace('\"',''))
+        cmd = cmd + quality_cutoff
     if (args.quality_base):
-        quality_base = " --quality_base " + str(args.quality_base)
+        quality_base = " --quality_base=" + str(args.quality_base)
         cmd = cmd + quality_base
     if (args.cores):
         cores = " -j " + str(args.cores)
