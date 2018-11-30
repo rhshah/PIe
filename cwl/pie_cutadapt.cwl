@@ -30,8 +30,9 @@ inputs:
   
   cutadapt_version:
     type:
-      type: enum
-      symbols: ['default']
+      type: [enum,string]
+      symbols: ['default','1.18']
+    default: 'default'
     doc: select which version of cutadapt you will like to run
     inputBinding:
       prefix: --cutadapt_version 
