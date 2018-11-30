@@ -174,7 +174,7 @@ inputs:
 
 
 outputs:
-  fastq1:
+  output_fastq1:
     type: File
 
     doc: output FASTQ for read1 
@@ -185,7 +185,7 @@ outputs:
             return inputs.out_fastq1;
           return null;
         }
-  fastq2:
+  output_fastq2:
     type: File
 
     doc: output FASTQ for read2 
@@ -196,7 +196,7 @@ outputs:
             return inputs.out_fastq2;
           return null;
         }
-  log:
+  output_log:
     type: File
 
     doc: write debug log to FILENAME

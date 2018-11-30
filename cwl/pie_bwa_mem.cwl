@@ -109,7 +109,7 @@ inputs:
 
 outputs:
 
-  sam:
+  output_sam:
     type: File
 
     doc: output SAM FILENAME
@@ -121,7 +121,7 @@ outputs:
           return null;
         }
 
- log:
+  output_log:
     type: File
 
     doc: write debug log to FILENAME
