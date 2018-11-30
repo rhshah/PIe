@@ -98,7 +98,7 @@ inputs:
     inputBinding:
       prefix: --minimum_length 
 
-   quality_cutoff:
+  quality_cutoff:
     type: ["null", string]
     default: 30,30
     doc: Trim low-quality bases from 5' and/or 3' ends of each read before adapter removal. Applied to both reads if data is paired. If one value is given, only the 3' end is trimmed. If two comma-separated cutoffs are given, the 5' end is trimmed with the first cutoff, the 3' end with the second.[default=30,30]
